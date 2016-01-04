@@ -2,7 +2,7 @@
 
 if hash "vim" 2>/dev/null; then
   if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-    mkdir -p /.vim/bundle/
+    mkdir -p /.vim/bundle/ > /dev/null 2>&1
     git clone -q https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     vim +PluginInstall +qall
   fi
