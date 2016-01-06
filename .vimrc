@@ -1,3 +1,7 @@
+" set utf-8 encoding
+scriptencoding utf-8
+set encoding=utf-8
+
 set nocompatible " enable VIM options
 
 syntax on        " turn on syntax highlighting
