@@ -29,7 +29,6 @@ syntax on                           " turn on syntax highlighting
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-sensible'
   Plugin 'godlygeek/tabular'
-  Plugin 'altercation/vim-colors-solarized'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -106,8 +105,7 @@ else
     set background=dark
 endif
 
-colorscheme solarized               " use solarized colorscheme from vundle packages
-"colorscheme desert                  " use desert which is included with VIM
+colorscheme desert                  " use desert which is included with VIM
 
 " dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
