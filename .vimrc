@@ -29,6 +29,7 @@ syntax on                           " turn on syntax highlighting
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-sensible'
   Plugin 'godlygeek/tabular'
+  Plugin 'Yggdroot/indentLine'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -80,9 +81,8 @@ set wildignore=*.o,*.obj,*~         " files to ignore when tab completing
 
 set nobackup                        " prevent ~ backup files from being created
 
-" display tabs and trailing spaces
-set list
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅",extends:⁞,precedes:⁞
+set list                            " display tabs and trailing spaces
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,extends:⁞,precedes:⁞
 
 set scrolloff=3                     " keep 3 lines of text on screen when vert scrolling
 set sidescrolloff=7                 " keep 7 chars of test on screen when hor scrolling
@@ -106,6 +106,8 @@ else
 endif
 
 colorscheme desert                  " use desert which is included with VIM
+
+let g:indentLine_char = '︙'        " set IndentLine character
 
 " dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
