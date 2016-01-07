@@ -1,10 +1,9 @@
-" set utf-8 encoding
-scriptencoding utf-8
-set encoding=utf-8
+scriptencoding utf-8                " set utf-8 encoding
+set encoding=utf-8                  " set utf-8 encoding
 
-set nocompatible " enable VIM options
+set nocompatible                    " enable VIM options
 
-syntax on        " turn on syntax highlighting
+syntax on                           " turn on syntax highlighting
 
 " Vundle Section Start
   "To install Vudle use:
@@ -30,6 +29,7 @@ syntax on        " turn on syntax highlighting
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-sensible'
   Plugin 'godlygeek/tabular'
+  Plugin 'altercation/vim-colors-solarized'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -83,7 +83,7 @@ set nobackup                        " prevent ~ backup files from being created
 
 " display tabs and trailing spaces
 set list
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅",extends:⁞,precedes:⁞
 
 set scrolloff=3                     " keep 3 lines of text on screen when vert scrolling
 set sidescrolloff=7                 " keep 7 chars of test on screen when hor scrolling
@@ -98,9 +98,16 @@ set ttymouse=xterm2
 
 set t_Co=256                        " tell the term it has 256 colors
 
-colorscheme desert                  " included with Windows VIM
-
 set hidden                          " hide buffers when not displayed
+
+if has('gui_running')               " set the background color based on gui_running
+    set background=light
+else
+    set background=dark
+endif
+
+colorscheme solarized               " use solarized colorscheme from vundle packages
+"colorscheme desert                  " use desert which is included with VIM
 
 " dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
