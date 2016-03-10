@@ -29,7 +29,6 @@ syntax on                           " turn on syntax highlighting
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-sensible'
   Plugin 'godlygeek/tabular'
-  Plugin 'Yggdroot/indentLine'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -87,6 +86,8 @@ set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,extends:⁞,precedes:⁞
 set scrolloff=3                     " keep 3 lines of text on screen when vert scrolling
 set sidescrolloff=7                 " keep 7 chars of test on screen when hor scrolling
 set sidescroll=1                    " scroll 1 char at a time when side scrolling
+
+set paste                           " enable pasting
 
 filetype on                         " enable filetype detection
 filetype plugin on                  " enable filetype-specific indenting
