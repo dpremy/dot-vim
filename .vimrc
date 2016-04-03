@@ -87,8 +87,6 @@ set scrolloff=3                     " keep 3 lines of text on screen when vert s
 set sidescrolloff=7                 " keep 7 chars of test on screen when hor scrolling
 set sidescroll=1                    " scroll 1 char at a time when side scrolling
 
-set paste                           " enable pasting
-
 filetype on                         " enable filetype detection
 filetype plugin on                  " enable filetype-specific indenting
 filetype indent on                  " enable filetype-specific plugins
