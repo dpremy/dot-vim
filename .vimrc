@@ -1,5 +1,14 @@
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
 scriptencoding utf-8                " set utf-8 encoding
-set encoding=utf-8                  " set utf-8 encoding
 
 set nocompatible                    " enable VIM options
 
@@ -29,6 +38,8 @@ syntax on                           " turn on syntax highlighting
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-sensible'
   Plugin 'godlygeek/tabular'
+  Plugin 'ntpeters/vim-better-whitespace'
+  Plugin 'Raimondi/delimitMate'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -45,6 +56,10 @@ syntax on                           " turn on syntax highlighting
   " see :h vundle for more details or wiki for FAQ
   " Put your non-Plugin stuff after this line
 " Vundle Section End
+
+" Plugin options
+  let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
+  highlight ExtraWhitespace ctermbg=Red
 
 set backspace=indent,eol,start      " allow backspacing over everything in insert mode
 
@@ -81,7 +96,9 @@ set wildignore=*.o,*.obj,*~         " files to ignore when tab completing
 set nobackup                        " prevent ~ backup files from being created
 
 set list                            " display tabs and trailing spaces
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅,extends:⁞,precedes:⁞
+set listchars=trail:·,nbsp:·,precedes:«,extends:»,tab:•\ 
+                                    " leave a trailing space at the end of the
+                                    " tab option above 'tab:•\ '
 
 set scrolloff=3                     " keep 3 lines of text on screen when vert scrolling
 set sidescrolloff=7                 " keep 7 chars of test on screen when hor scrolling
@@ -105,8 +122,6 @@ else
 endif
 
 colorscheme desert                  " use desert which is included with VIM
-
-let g:indentLine_char = '︙'        " set IndentLine character
 
 " dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
