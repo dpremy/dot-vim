@@ -68,6 +68,9 @@ set history=1000                    " store lots of :cmdline history
 set showcmd                         " show incomplete cmds down the bottom
 set showmode                        " show current mode down the bottom
 
+set modeline                        " enable modelines in files
+set modelines=5                     " set the number of lines which are checked for a modeline
+
 set incsearch                       " find the next match as we type the search
 set hlsearch                        " hilight searches by default
 
