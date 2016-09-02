@@ -1,11 +1,11 @@
+" detect fileencodings properly
+" based on http://stackoverflow.com/questions/5477565/how-to-setup-vim-properly-for-editing-in-utf-8
 if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
   endif
   set encoding=utf-8
   setglobal fileencoding=utf-8
-  "setglobal bomb
-  set fileencodings=ucs-bom,utf-8,latin1
 endif
 
 scriptencoding utf-8                " set utf-8 encoding
@@ -40,26 +40,27 @@ syntax on                           " turn on syntax highlighting
   Plugin 'godlygeek/tabular'
   Plugin 'ntpeters/vim-better-whitespace'
   Plugin 'Raimondi/delimitMate'
+  Plugin 'guns/xterm-color-table.vim'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
-  filetype plugin indent on    " required
+  filetype plugin indent on    " required - enables filetype detection for files, plugins, and indentation
   " To ignore plugin indent changes, instead use:
   "filetype plugin on
-  "
+
   " Brief help
   " :PluginList       - lists configured plugins
   " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
   " :PluginSearch foo - searches for foo; append `!` to refresh local cache
   " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-  "
+
   " see :h vundle for more details or wiki for FAQ
   " Put your non-Plugin stuff after this line
 " Vundle Section End
 
 " Plugin options
   let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
-  highlight ExtraWhitespace ctermbg=Red
+  highlight ExtraWhitespace ctermbg=red
 
 set backspace=indent,eol,start      " allow backspacing over everything in insert mode
 
@@ -80,6 +81,7 @@ set linebreak                       " wrap lines at convenient points
 set ignorecase                      " ignore case when searching
 set smartcase                       " if search uses case override ignorecase
 
+" default tab options
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -107,10 +109,6 @@ set scrolloff=3                     " keep 3 lines of text on screen when vert s
 set sidescrolloff=7                 " keep 7 chars of test on screen when hor scrolling
 set sidescroll=1                    " scroll 1 char at a time when side scrolling
 
-filetype on                         " enable filetype detection
-filetype plugin on                  " enable filetype-specific indenting
-filetype indent on                  " enable filetype-specific plugins
-
 set mouse=a                         " enable mouse support
 set ttymouse=xterm2
 
@@ -125,6 +123,8 @@ else
 endif
 
 colorscheme desert                  " use desert which is included with VIM
+
+highlight SpellBad ctermfg=red ctermbg=NONE  " setup SpellBad to no highlight with red text
 
 " dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
