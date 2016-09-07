@@ -41,6 +41,7 @@ syntax on                           " turn on syntax highlighting
   Plugin 'ntpeters/vim-better-whitespace'
   Plugin 'Raimondi/delimitMate'
   Plugin 'guns/xterm-color-table.vim'
+  Plugin 'henrik/vim-indexed-search'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -112,9 +113,21 @@ set sidescroll=1                    " scroll 1 char at a time when side scrollin
 set mouse=a                         " enable mouse support
 set ttymouse=xterm2
 
+call system('mkdir ~/.vim/undo')    " create undo dir
+set undofile                        " save undo file on file close
+set undodir=~/.vim/undo             " set the undodir
+set undolevels=1000                 " how many undos to save
+set undoreload=10000                " number of lines to save for undo
+
 set t_Co=256                        " tell the term it has 256 colors
 
 set hidden                          " hide buffers when not displayed
+
+" check for vim spell feature and turn it on
+if has('spell')
+  set spelllang=en_us
+  highlight SpellBad ctermfg=red ctermbg=NONE  " setup SpellBad to no highlight with red text
+endif
 
 if has('gui_running')               " set the background color based on gui_running
     set background=light
@@ -124,10 +137,12 @@ endif
 
 colorscheme desert                  " use desert which is included with VIM
 
-highlight SpellBad ctermfg=red ctermbg=NONE  " setup SpellBad to no highlight with red text
-
 " dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
     let g:CSApprox_loaded = 1
 endif
 
+" source local vim file if it exists
+if filereadable(glob('~/.vimrc_local'))
+  source ~/.vimrc_local
+endif
