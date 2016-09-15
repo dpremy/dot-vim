@@ -42,6 +42,7 @@ syntax on                           " turn on syntax highlighting
   Plugin 'Raimondi/delimitMate'
   Plugin 'guns/xterm-color-table.vim'
   Plugin 'henrik/vim-indexed-search'
+  Plugin 'scrooloose/syntastic'
 
   " All of your Plugins must be added before the following line
   call vundle#end()            " required
@@ -62,6 +63,17 @@ syntax on                           " turn on syntax highlighting
 " Plugin options
   let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
   highlight ExtraWhitespace ctermbg=red
+
+  let g:syntastic_auto_loc_list = 2
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_enable_balloons = 1
+  let g:syntastic_error_symbol = '✗'
+  let g:syntastic_ignore_files = ['']
+  let g:syntastic_loc_list_height = 5
+  let g:syntastic_warning_symbol = '✗'
+  let g:syntastic_style_error_symbol = '∆'
+  let g:syntastic_style_warning_symbol = '∆'
 
 set backspace=indent,eol,start      " allow backspacing over everything in insert mode
 
