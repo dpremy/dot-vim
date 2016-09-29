@@ -135,11 +135,8 @@ set t_Co=256                        " tell the term it has 256 colors
 
 set hidden                          " hide buffers when not displayed
 
-" check for vim spell feature and turn it on
-if has('spell')
-  set spelllang=en_us
-  highlight SpellBad ctermfg=red ctermbg=NONE  " setup SpellBad to no highlight with red text
-endif
+
+colorscheme desert                  " use desert which is included with VIM
 
 if has('gui_running')               " set the background color based on gui_running
     set background=light
@@ -147,7 +144,15 @@ else
     set background=dark
 endif
 
-colorscheme desert                  " use desert which is included with VIM
+" check for vim spell feature and turn it on
+if has('spell')
+  set spelllang=en_us
+  " set spelling highlight to no highlight and red text
+  highlight SpellBad ctermfg=red ctermbg=NONE
+  highlight SpellLocal ctermfg=red ctermbg=NONE
+  highlight SpellCap ctermfg=red ctermbg=NONE
+  highlight SpellRare ctermfg=red ctermbg=NONE
+endif
 
 " dont load csapprox if we no gui support - silences an annoying warning
 if !has("gui")
