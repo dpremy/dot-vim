@@ -34,7 +34,8 @@ syntax on                           " turn on syntax highlighting
 
   " let Vundle manage Vundle, required
   Plugin 'gmarik/Vundle.vim'
-  Plugin 'bling/vim-airline'
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-sensible'
   Plugin 'godlygeek/tabular'
@@ -74,6 +75,8 @@ syntax on                           " turn on syntax highlighting
   let g:syntastic_warning_symbol = '✗'
   let g:syntastic_style_error_symbol = '∆'
   let g:syntastic_style_warning_symbol = '∆'
+
+  let g:airline_theme='solarized'
 
 set backspace=indent,eol,start      " allow backspacing over everything in insert mode
 
