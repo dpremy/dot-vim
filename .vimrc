@@ -17,20 +17,10 @@ syntax on                           " turn on syntax highlighting
 " Vundle Section Start
   "To install Vudle use:
   " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    " For Windows git and curl are needed within the paths.
 
   "set the runtime path to include Vundle and initialize
-    " Linux Vundle setup
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
-
-    " Windows Vundle setup
-    "set rtp+=~/vimfiles/bundle/Vundle.vim/
-    "let path='~/vimfiles/bundle'
-    "call vundle#begin(path)
-
-  " alternatively, pass a path where Vundle should install plugins
-  "call vundle#begin('~/some/path/here')
 
   " let Vundle manage Vundle, required
   Plugin 'gmarik/Vundle.vim'
