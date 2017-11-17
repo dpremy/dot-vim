@@ -128,6 +128,8 @@ set t_Co=256                        " tell the term it has 256 colors
 
 set hidden                          " hide buffers when not displayed
 
+xnoremap <  <gv                     " prevent loss of selection when shifting text sidewards
+xnoremap >  >gv                     " prevent loss of selection when shifting text sidewards
 
 colorscheme desert                  " use desert which is included with VIM
 
