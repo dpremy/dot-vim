@@ -79,7 +79,7 @@
   " Turn on syntax highlighting
   syntax on
 
-  " hide buffers when not displayed
+  " Hide buffers when not displayed
   set hidden
 
   " Allow backspacing over everything in insert mode
@@ -116,16 +116,16 @@
     " make cmdline tab completion similar to bash
     set wildmode=list:longest,full
 
-    " enable ctrl-n and ctrl-p to scroll thru matches
+    " Enable ctrl-n and ctrl-p to scroll thru matches
     set wildmenu
 
-    " files to ignore when tab completing
+    " Files to ignore when tab completing
     set wildignore=*.o,*.obj,*~
 
-  " prevent ~ backup files from being created
+  " Prevent ~ backup files from being created
   set nobackup
 
-  " display tabs and trailing spaces
+  " Display tabs and trailing spaces
   set list
 
   " Set characters to be show for various indentations when no text follows the indentation
@@ -179,13 +179,13 @@
   " Ignore case when searching 
   set ignorecase
 
-  " if search uses case override ignorecase
+  " If search uses case override ignorecase
   set smartcase
 
-  " disable line wrapping
+  " Disable line wrapping
   set nowrap
 
-  " wrap lines at convenient points
+  " Wrap lines at convenient points
   set linebreak
 
 " Color Options
