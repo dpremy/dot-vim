@@ -1,21 +1,21 @@
-" detect fileencodings properly
-" based on http://stackoverflow.com/questions/5477565/how-to-setup-vim-properly-for-editing-in-utf-8
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
+" File Encoding Settings
+" -------------------------------------------------------------------------------------
+  " Properly detect fileencodings
+  " Based on http://stackoverflow.com/questions/5477565/how-to-setup-vim-properly-for-editing-in-utf-8
+  if has("multi_byte")
+    if &termencoding == ""
+      let &termencoding = &encoding
+    endif
+    set encoding=utf-8
+    setglobal fileencoding=utf-8
   endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8
-endif
 
-scriptencoding utf-8                " set utf-8 encoding
-
-set nocompatible                    " enable VIM options
-
-syntax on                           " turn on syntax highlighting
+  " Set utf-8 Encoding
+  scriptencoding utf-8
 
 " Vundle Section Start
-  "To install Vudle use:
+" -------------------------------------------------------------------------------------
+  "To install Vundle use:
   " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
   "set the runtime path to include Vundle and initialize
@@ -49,9 +49,9 @@ syntax on                           " turn on syntax highlighting
 
   " see :h vundle for more details or wiki for FAQ
   " Put your non-Plugin stuff after this line
-" Vundle Section End
 
-" Plugin options
+" Plugin Options
+" -------------------------------------------------------------------------------------
   let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
   highlight ExtraWhitespace ctermbg=red
 
@@ -68,93 +68,157 @@ syntax on                           " turn on syntax highlighting
 
   let g:airline_theme='minimalist'
 
-set backspace=indent,eol,start      " allow backspacing over everything in insert mode
+" VIM Options
+" -------------------------------------------------------------------------------------
+  " Enable VIM options
+  set nocompatible
 
-set history=1000                    " store lots of :cmdline history
+  " Set the term to 256 colors
+  set t_Co=256
 
-set showcmd                         " show incomplete cmds down the bottom
-set showmode                        " show current mode down the bottom
+  " Turn on syntax highlighting
+  syntax on
 
-set modeline                        " enable modelines in files
-set modelines=5                     " set the number of lines which are checked for a modeline
+  " hide buffers when not displayed
+  set hidden
 
-set incsearch                       " find the next match as we type the search
-set hlsearch                        " hilight searches by default
+  " Allow backspacing over everything in insert mode
+  set backspace=indent,eol,start
 
-set nowrap                          " dont wrap lines
-set linebreak                       " wrap lines at convenient points
+  " Set the :cmdline history
+  set history=1000
 
-set ignorecase                      " ignore case when searching
-set smartcase                       " if search uses case override ignorecase
+  " Show incomplete cmds in status
+  set showcmd
 
-" default tab options
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set autoindent smartindent
+  " Show current mode in status
+  set showmode
 
-set smarttab                        " tab and backspace are smart
+  " Enable modeline checking of files and look for modelines in the first x lines
+  set modeline
+  set modelines=5
 
-set foldmethod=indent               " fold based on indent
-set foldnestmax=3                   " deepest fold is 3 level
-set nofoldenable                    " dont fold by default
+  " Tab options
+  set tabstop=2
+  set shiftwidth=2
+  set softtabstop=2
+  set expandtab
+  set autoindent smartindent
+  set smarttab
 
-set wildmode=list:longest,full      " make cmdline tab completion similar to bash
-set wildmenu                        " enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~         " files to ignore when tab completing
+  " Folding options
+    " Don't fold by default, fold based on indent, and no deeper than 3 levels
+    set nofoldenable
+    set foldmethod=indent
+    set foldnestmax=3
 
-set nobackup                        " prevent ~ backup files from being created
+  " Wildmode options
+    " make cmdline tab completion similar to bash
+    set wildmode=list:longest,full
 
-set list                            " display tabs and trailing spaces
-set listchars=trail:·,nbsp:·,precedes:«,extends:»,tab:•\ 
-                                    " leave a trailing space at the end of the
-                                    " tab option above 'tab:•\ '
+    " enable ctrl-n and ctrl-p to scroll thru matches
+    set wildmenu
 
-set scrolloff=3                     " keep 3 lines of text on screen when vert scrolling
-set sidescrolloff=7                 " keep 7 chars of test on screen when hor scrolling
-set sidescroll=1                    " scroll 1 char at a time when side scrolling
+    " files to ignore when tab completing
+    set wildignore=*.o,*.obj,*~
 
-set mouse=a                         " enable mouse support
-set ttymouse=xterm2
+  " prevent ~ backup files from being created
+  set nobackup
 
-call system('mkdir ~/.vim/undo')    " create undo dir
-set undofile                        " save undo file on file close
-set undodir=~/.vim/undo             " set the undodir
-set undolevels=1000                 " how many undos to save
-set undoreload=10000                " number of lines to save for undo
+  " display tabs and trailing spaces
+  set list
 
-set t_Co=256                        " tell the term it has 256 colors
+  " Set characters to be show for various indentations when no text follows the indentation
+    " Note: Leave a trailing space at the end of the tab option ie. 'tab:•\ '
+  set listchars=trail:·,nbsp:·,precedes:«,extends:»,tab:•\ 
 
-set hidden                          " hide buffers when not displayed
+  " Window scrolling options
+    " Keep 3 lines of text on screen when vert scrolling
+    set scrolloff=3
 
-xnoremap <  <gv                     " prevent loss of selection when shifting text sidewards
-xnoremap >  >gv                     " prevent loss of selection when shifting text sidewards
+    " Keep 7 chars of test on screen when hor scrolling
+    set sidescrolloff=7
 
-colorscheme desert                  " use desert which is included with VIM
+    " Scroll 1 char at a time when side scrolling
+    set sidescroll=1
 
-if has('gui_running')               " set the background color based on gui_running
-    set background=light
-else
-    set background=dark
-endif
+  " Enable mouse support
+  set mouse=a
+  set ttymouse=xterm2
 
-" check for vim spell feature and turn it on
-if has('spell')
-  set spelllang=en_us
-  " set spelling highlight to no highlight and red text
-  highlight SpellBad ctermfg=red ctermbg=NONE
-  highlight SpellLocal ctermfg=red ctermbg=NONE
-  highlight SpellCap ctermfg=red ctermbg=NONE
-  highlight SpellRare ctermfg=red ctermbg=NONE
-endif
+  " Undo options
+    " Create user undo directory
+    call system('mkdir ~/.vim/undo')
 
-" dont load csapprox if we no gui support - silences an annoying warning
-if !has("gui")
-    let g:CSApprox_loaded = 1
-endif
+    " Set the undodir
+    set undodir=~/.vim/undo
 
-" source local vim file if it exists
-if filereadable(glob('~/.vimrc_local'))
-  source ~/.vimrc_local
-endif
+    " Save undo files on file close
+    set undofile
+
+    " Set undo levels to be saved
+    set undolevels=1000
+
+    " Set number of lines to save for undo
+    set undoreload=10000
+
+" Custom Key Mappings
+" -------------------------------------------------------------------------------------
+  " Indent lines without losing the current selection
+  xnoremap <  <gv
+  xnoremap >  >gv
+
+" Search Options
+" -------------------------------------------------------------------------------------
+  " Find the next search match as it is typed
+  set incsearch
+
+  " Highlight searches by default
+  set hlsearch
+
+  " Ignore case when searching 
+  set ignorecase
+
+  " if search uses case override ignorecase
+  set smartcase
+
+  " disable line wrapping
+  set nowrap
+
+  " wrap lines at convenient points
+  set linebreak
+
+" Color Options
+" -------------------------------------------------------------------------------------
+  colorscheme desert
+
+  " set the background color based on gui_running
+  if has('gui_running')
+      set background=light
+  else
+      set background=dark
+  endif
+
+" Color Options
+" -------------------------------------------------------------------------------------
+  " Check for VIM spell feature and turn it on
+  if has('spell')
+    set spelllang=en_us
+    " set spelling highlight to no highlight and red text
+    highlight SpellBad ctermfg=red ctermbg=NONE
+    highlight SpellLocal ctermfg=red ctermbg=NONE
+    highlight SpellCap ctermfg=red ctermbg=NONE
+    highlight SpellRare ctermfg=red ctermbg=NONE
+  endif
+
+  "  Prevent loading of CSApprox if there is no gui support
+  if !has("gui")
+      let g:CSApprox_loaded = 1
+  endif
+
+" Source Local vimrc Configs
+" -------------------------------------------------------------------------------------
+  " Source the ~/.vimrc_local file if it exists
+  if filereadable(glob('~/.vimrc_local'))
+    source ~/.vimrc_local
+  endif
