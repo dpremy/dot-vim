@@ -106,6 +106,10 @@
   set autoindent smartindent
   set smarttab
 
+  " Window split directions
+  set splitbelow
+  set splitright
+
   " Folding options
     " Don't fold by default, fold based on indent, and no deeper than 3 levels
     set nofoldenable
