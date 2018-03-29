@@ -32,7 +32,7 @@
   Plugin 'ntpeters/vim-better-whitespace'
   Plugin 'Raimondi/delimitMate'
   Plugin 'guns/xterm-color-table.vim'
-  Plugin 'henrik/vim-indexed-search'
+  Plugin 'google/vim-searchindex.git'
   Plugin 'scrooloose/syntastic'
 
   " All of your Plugins must be added before the following line
