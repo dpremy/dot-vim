@@ -116,6 +116,9 @@
     set foldmethod=indent
     set foldnestmax=3
 
+  " Enable tab-completion for all file related tasks, enables searching of files in subfolders
+    set path+=**
+
   " Wildmode options
     " make cmdline tab completion similar to bash
     set wildmode=list:longest,full
