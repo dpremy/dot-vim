@@ -223,6 +223,10 @@
       let g:CSApprox_loaded = 1
   endif
 
+" Configure vim built in netrw file browser
+  let g:netrw_banner=0
+  let g:netrw_liststyle=3
+
 " Source Local vimrc Configs
 " -------------------------------------------------------------------------------------
   " Source the ~/.vimrc_local file if it exists
