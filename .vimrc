@@ -19,8 +19,8 @@
   " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
   "set the runtime path to include Vundle and initialize
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
 
   " let Vundle manage Vundle, required
   Plugin 'gmarik/Vundle.vim'
@@ -36,10 +36,10 @@
   Plugin 'scrooloose/syntastic'
 
   " All of your Plugins must be added before the following line
-  call vundle#end()            " required
-  filetype plugin indent on    " required - enables filetype detection for files, plugins, and indentation
-  " To ignore plugin indent changes, instead use:
-  "filetype plugin on
+  call vundle#end()
+
+  " enable filetype detection for files, plugins, and indentation
+  filetype plugin indent on
 
   " Brief help
   " :PluginList       - lists configured plugins
@@ -48,10 +48,13 @@
   " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
   " see :h vundle for more details or wiki for FAQ
-  " Put your non-Plugin stuff after this line
 
 " Plugin Options
 " -------------------------------------------------------------------------------------
+  " Configure built in vim netrw file browser
+  let g:netrw_banner=0
+  let g:netrw_liststyle=3
+
   let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
   highlight ExtraWhitespace ctermbg=red
 
@@ -70,7 +73,7 @@
 
 " VIM Options
 " -------------------------------------------------------------------------------------
-  " Enable VIM options
+  " Disable vi compatibility mode
   set nocompatible
 
   " Set the term to 256 colors
@@ -94,7 +97,7 @@
   " Show current mode in status
   set showmode
 
-  " Enable modeline checking of files and look for modelines in the first x lines
+  " Enable modeline checking of files and look for modelines in the first 5 lines
   set modeline
   set modelines=5
 
@@ -110,14 +113,13 @@
   set splitbelow
   set splitright
 
-  " Folding options
-    " Don't fold by default, fold based on indent, and no deeper than 3 levels
-    set nofoldenable
-    set foldmethod=indent
-    set foldnestmax=3
+  " Don't fold by default, fold based on indent, and no deeper than 3 levels
+  set nofoldenable
+  set foldmethod=indent
+  set foldnestmax=3
 
   " Enable tab-completion for all file related tasks, enables searching of files in subfolders
-    set path+=**
+  set path+=**
 
   " Wildmode options
     " make cmdline tab completion similar to bash
@@ -136,14 +138,14 @@
   set list
 
   " Set characters to be show for various indentations when no text follows the indentation
-    " Note: Leave a trailing space at the end of the tab option ie. 'tab:•\ '
+  " Note: Leave a trailing space at the end of the tab option ie. 'tab:•\ '
   set listchars=trail:·,nbsp:·,precedes:«,extends:»,tab:•\ 
 
   " Window scrolling options
-    " Keep 3 lines of text on screen when vert scrolling
+    " Keep 3 lines of text on screen when vertically scrolling
     set scrolloff=3
 
-    " Keep 7 chars of test on screen when hor scrolling
+    " Keep 7 chars of text on screen when horizontal scrolling
     set sidescrolloff=7
 
     " Scroll 1 char at a time when side scrolling
@@ -201,12 +203,12 @@
 
   " set the background color based on gui_running
   if has('gui_running')
-      set background=light
+    set background=light
   else
-      set background=dark
+    set background=dark
   endif
 
-" Color Options
+" Spell Options
 " -------------------------------------------------------------------------------------
   " Check for VIM spell feature and turn it on
   if has('spell')
@@ -220,12 +222,8 @@
 
   "  Prevent loading of CSApprox if there is no gui support
   if !has("gui")
-      let g:CSApprox_loaded = 1
+    let g:CSApprox_loaded = 1
   endif
-
-" Configure vim built in netrw file browser
-  let g:netrw_banner=0
-  let g:netrw_liststyle=3
 
 " Source Local vimrc Configs
 " -------------------------------------------------------------------------------------
