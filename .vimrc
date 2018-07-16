@@ -1,3 +1,7 @@
+" Disable vi compatibility mode as plugins and other
+"  features in this configuration require the iMproved featureset
+set nocompatible
+
 " File Encoding Settings
 " -------------------------------------------------------------------------------------
   " Properly detect fileencodings
@@ -13,17 +17,25 @@
   " Set utf-8 Encoding
   scriptencoding utf-8
 
-" Vundle Section Start
+" Vundle Installation
 " -------------------------------------------------------------------------------------
-  "To install Vundle use:
-  " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  " To manually install Vundle use:
+  "  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-  "set the runtime path to include Vundle and initialize
+  " disable filetype detection, required for Vundle plugin installation.
+  "  filetype detection is re-enabled after Vundle
+  filetype off
+
+  " set the runtime path to include Vundle and initialize
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "  call vundle#begin('~/some/path/here')
 
   " let Vundle manage Vundle, required
-  Plugin 'gmarik/Vundle.vim'
+  Plugin 'VundleVim/Vundle.vim'
+
+  " plugins Vundle should install
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'tpope/vim-fugitive'
@@ -49,12 +61,8 @@
 
   " see :h vundle for more details or wiki for FAQ
 
-" Plugin Options
+" Vundle Managed Plugin Options
 " -------------------------------------------------------------------------------------
-  " Configure built in vim netrw file browser
-  let g:netrw_banner=0
-  let g:netrw_liststyle=3
-
   let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
   highlight ExtraWhitespace ctermbg=red
 
@@ -71,11 +79,14 @@
 
   let g:airline_theme='minimalist'
 
+" Built-in Plugin Options
+" -------------------------------------------------------------------------------------
+  " Configure vim netrw file browser
+  let g:netrw_banner=0
+  let g:netrw_liststyle=3
+
 " VIM Options
 " -------------------------------------------------------------------------------------
-  " Disable vi compatibility mode
-  set nocompatible
-
   " Set the term to 256 colors
   set t_Co=256
 
@@ -220,7 +231,7 @@
     highlight SpellRare ctermfg=red ctermbg=NONE
   endif
 
-  "  Prevent loading of CSApprox if there is no gui support
+  " Prevent loading of CSApprox if there is no gui support
   if !has("gui")
     let g:CSApprox_loaded = 1
   endif
