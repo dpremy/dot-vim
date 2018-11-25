@@ -196,7 +196,7 @@ set nocompatible
   " Highlight searches by default
   set hlsearch
 
-  " Ignore case when searching 
+  " Ignore case when searching
   set ignorecase
 
   " If search uses case override ignorecase
