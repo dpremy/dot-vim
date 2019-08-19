@@ -96,6 +96,9 @@ set nocompatible
   " Hide buffers when not displayed
   set hidden
 
+  " Use an open window when switching between buffers
+  set switchbuf=useopen
+
   " Allow backspacing over everything in insert mode
   set backspace=indent,eol,start
 
@@ -130,20 +133,22 @@ set nocompatible
   set foldnestmax=3
 
   " Enable tab-completion for all file related tasks, enables searching of files in subfolders
-  set path+=**
+  set path=.,**
 
   " Wildmode options
     " make cmdline tab completion similar to bash
     set wildmode=list:longest,full
 
+    " ignore case when using wildmode
+    set wildignorecase
+
     " Enable ctrl-n and ctrl-p to scroll thru matches
     set wildmenu
 
     " Files to ignore when tab completing
-    set wildignore=*.o,*.obj,*~
-
-  " Prevent ~ backup files from being created
-  set nobackup
+    set wildignore=*.swp,*.bak,*.tmp,*.temp,*.cache,*.dll,*~
+    set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+    set wildignore+=tags
 
   " Display tabs and trailing spaces
   set list
@@ -166,9 +171,26 @@ set nocompatible
   set mouse=a
   set ttymouse=xterm2
 
+  " Directory options
+    " Create protected user swap directory
+    call system('umask 027; mkdir ~/.vim/swap')
+
+    " Set the backupdir
+    set directory=~/.vim/swap/
+
+  " Backup options
+    " Create protected user backup directory
+    call system('umask 027; mkdir ~/.vim/backup')
+
+    " Set the backupdir
+    set backupdir=~/.vim/backup/
+
+    " Save undo files on file close
+    set backup
+
   " Undo options
-    " Create user undo directory
-    call system('mkdir ~/.vim/undo')
+    " Create protected user undo directory
+    call system('umask 027; mkdir ~/.vim/undo')
 
     " Set the undodir
     set undodir=~/.vim/undo
@@ -187,6 +209,20 @@ set nocompatible
   " Indent lines without losing the current selection
   xnoremap <  <gv
   xnoremap >  >gv
+
+  " List buffers and then populate the buffer prompt
+  nnoremap gb :ls<CR>:b<Space>
+
+  " Use | and - to split windows
+  map <Bar>   <C-W>v<C-W><Right>
+  map -       <C-W>s<C-W><Down>
+
+  " Use Tab and Shift-Tab to switch windows
+  map <Tab>   <C-W>w
+  map <Esc>[Z <C-W>W
+
+  " Use Ctrl+c to close window
+  map <C-c>   <C-W>c
 
 " Search Options
 " -------------------------------------------------------------------------------------
@@ -224,6 +260,13 @@ set nocompatible
   " Check for VIM spell feature and turn it on
   if has('spell')
     set spelllang=en_us
+
+    " toggle spelling with F7
+    map <F7> :setlocal spell!<CR>
+
+    " limit to the top 100 items
+    set sps=best,100
+
     " set spelling highlight to no highlight and red text
     highlight SpellBad ctermfg=red ctermbg=NONE
     highlight SpellLocal ctermfg=red ctermbg=NONE
