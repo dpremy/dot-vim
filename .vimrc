@@ -224,6 +224,14 @@ set nocompatible
   " Use Ctrl+c to close window
   map <C-c>   <C-W>c
 
+  " Use ml to add current config as modeline to the top of file
+  function! PrependModeline()
+    let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :", &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+    let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+    call append(line("^"), l:modeline)
+  endfunction
+  map ml :call PrependModeline()<CR>
+
 " Search Options
 " -------------------------------------------------------------------------------------
   " Find the next search match as it is typed
@@ -257,21 +265,25 @@ set nocompatible
 
 " Spell Options
 " -------------------------------------------------------------------------------------
-  " Check for VIM spell feature and turn it on
+  " Check for VIM spell feature and configure it
   if has('spell')
     set spelllang=en_us
 
     " toggle spelling with F7
     map <F7> :setlocal spell!<CR>
 
-    " limit to the top 100 items
-    set sps=best,100
+    " select best match with z= and limit to top 10 suggestions
+    set spellsuggest=best,10
 
     " set spelling highlight to no highlight and red text
     highlight SpellBad ctermfg=red ctermbg=NONE
     highlight SpellLocal ctermfg=red ctermbg=NONE
     highlight SpellCap ctermfg=red ctermbg=NONE
     highlight SpellRare ctermfg=red ctermbg=NONE
+
+    " enable spelling by default on specified file type
+    autocmd BufRead,BufNewFile *.txt setlocal spell
+    autocmd BufRead,BufNewFile *.md setlocal spell
   endif
 
   " Prevent loading of CSApprox if there is no gui support
