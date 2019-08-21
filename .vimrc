@@ -46,6 +46,7 @@ set nocompatible
   Plugin 'guns/xterm-color-table.vim'
   Plugin 'google/vim-searchindex.git'
   Plugin 'scrooloose/syntastic'
+  Plugin 'altercation/vim-colors-solarized'
 
   " All of your Plugins must be added before the following line
   call vundle#end()
@@ -254,7 +255,10 @@ set nocompatible
 
 " Color Options
 " -------------------------------------------------------------------------------------
+
+  " load the desert colorscheme, and then silently attempt to load solarized if installed
   colorscheme desert
+  silent! colorscheme solarized
 
   " set the background color based on gui_running
   if has('gui_running')
@@ -262,6 +266,9 @@ set nocompatible
   else
     set background=dark
   endif
+
+  " set vim comment color to solarized green, not the default blue
+  highlight Comment ctermfg=64
 
 " Spell Options
 " -------------------------------------------------------------------------------------
