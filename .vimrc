@@ -136,6 +136,12 @@ set nocompatible
   set foldmethod=indent
   set foldnestmax=3
 
+  " Disable line wrapping
+  set nowrap
+
+  " Wrap lines at convenient points
+  set linebreak
+
   " Enable tab-completion for all file related tasks, enables searching of files in subfolders
   set path=.,**
 
@@ -250,12 +256,6 @@ set nocompatible
   " If search uses case override ignorecase
   set smartcase
 
-  " Disable line wrapping
-  set nowrap
-
-  " Wrap lines at convenient points
-  set linebreak
-
 " Color Options
 " -------------------------------------------------------------------------------------
 
@@ -300,6 +300,32 @@ set nocompatible
   if !has("gui")
     let g:CSApprox_loaded = 1
   endif
+
+" Large File Options
+" -------------------------------------------------------------------------------------
+  " file is large from 10mb
+  let g:LargeFile = 1024 * 1024 * 10
+  augroup LargeFile
+    au!
+    autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+  augroup END
+
+  function! LargeFile()
+    " no syntax highlighting etc
+    set eventignore+=FileType
+    " no line numbers
+    set nonumber
+    " no spell checking
+    set nospell
+    " save memory when other file is viewed
+    setlocal bufhidden=unload
+    " is read-only (write with :w new_filename)
+    setlocal buftype=nowrite
+    " no undo possible
+    setlocal undolevels=-1
+    " display message
+    autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . "MB, some options have been disabled (see .vimrc for details)."
+  endfunction
 
 " Source Local vimrc Configs
 " -------------------------------------------------------------------------------------
