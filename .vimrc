@@ -94,6 +94,9 @@ set nocompatible
   " Turn on syntax highlighting
   syntax on
 
+  " Turn on line numbers
+  set number
+
   " Hide buffers when not displayed
   set hidden
 
