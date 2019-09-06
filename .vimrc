@@ -80,10 +80,6 @@ set nocompatible
 
   let g:airline_theme='minimalist'
 
-  " set solarized to a transparent bg color
-  " if the terminal isn't already using solarized set this to 0 as needed
-  let g:solarized_termtrans=1
-
 " Built-in Plugin Options
 " -------------------------------------------------------------------------------------
   " Configure vim netrw file browser
@@ -95,8 +91,9 @@ set nocompatible
   " Turn on syntax highlighting
   syntax on
 
-  " Turn on line numbers
+  " Turn on line numbers and cursor line highlighting
   set number
+  set cursorline
 
   " Hide buffers when not displayed
   set hidden
@@ -263,22 +260,18 @@ set nocompatible
   " never set t_Co directly, let vim pick up color support from the terminal as designed
   " https://sunaku.github.io/vim-256color-bce.html
 
+  " set vim comment color to solarized green, not the default blue, for all colorschemes
+  au ColorScheme * highlight Comment ctermfg=64 guifg=green
+
+  " set the line numbers to use the same bg color as vim itself, for all colorschemes
+  au ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
+
+  " set the cursor line numbers to use the a grayfg, for all colorschemes
+  au ColorScheme * highlight CursorLineNr ctermfg=12 guifg=gray
+
   " load the desert colorscheme, and then silently attempt to load solarized if installed
   colorscheme desert
   silent! colorscheme solarized
-
-  " set the background color based on gui_running
-  if has('gui_running')
-    set background=light
-  else
-    set background=dark
-  endif
-
-  " set vim comment color to solarized green, not the default blue
-  highlight Comment ctermfg=64
-
-  " set the line numbers to use the same bg color as vim itself
-  highlight LineNr ctermfg=grey ctermbg=NONE
 
 " Spell Options
 " -------------------------------------------------------------------------------------
