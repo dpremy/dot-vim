@@ -260,8 +260,8 @@ set nocompatible
   " never set t_Co directly, let vim pick up color support from the terminal as designed
   " https://sunaku.github.io/vim-256color-bce.html
 
-  " set vim comment color to solarized green, not the default blue, for all colorschemes
-  au ColorScheme * highlight Comment ctermfg=64 guifg=green
+  " set vim comment color to dark green, not the default blue, for all colorschemes
+  au ColorScheme * highlight Comment ctermfg=darkgreen guifg=#719e07
 
   " set the line numbers to use the same bg color as vim itself, for all colorschemes
   au ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
