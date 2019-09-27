@@ -35,18 +35,23 @@ set nocompatible
   " let Vundle manage Vundle, required
   Plugin 'VundleVim/Vundle.vim'
 
-  " plugins Vundle should install
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'tpope/vim-sensible'
-  Plugin 'godlygeek/tabular'
-  Plugin 'ntpeters/vim-better-whitespace'
-  Plugin 'Raimondi/delimitMate'
-  Plugin 'guns/xterm-color-table.vim'
-  Plugin 'google/vim-searchindex.git'
-  Plugin 'scrooloose/syntastic'
-  Plugin 'altercation/vim-colors-solarized'
+  " plugins
+    " vim configuration
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-sensible'
+    Plugin 'godlygeek/tabular'
+    Plugin 'ntpeters/vim-better-whitespace'
+    Plugin 'Raimondi/delimitMate'
+    Plugin 'guns/xterm-color-table.vim'
+    Plugin 'google/vim-searchindex.git'
+    Plugin 'vim-syntastic/syntastic'
+    Plugin 'altercation/vim-colors-solarized'
+
+    " file syntax
+    Plugin 'PProvost/vim-ps1'
+    Plugin 'pearofducks/ansible-vim'
 
   " All of your Plugins must be added before the following line
   call vundle#end()
@@ -79,6 +84,8 @@ set nocompatible
   let g:syntastic_style_warning_symbol = '∆'
 
   let g:airline_theme='minimalist'
+
+  let g:ansible_unindent_after_newline = 1
 
 " Built-in Plugin Options
 " -------------------------------------------------------------------------------------
