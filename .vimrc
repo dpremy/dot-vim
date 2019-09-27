@@ -52,6 +52,8 @@ set nocompatible
     " file syntax
     Plugin 'PProvost/vim-ps1'
     Plugin 'pearofducks/ansible-vim'
+    Plugin 'hashivim/vim-terraform'
+    Plugin 'mechatroner/rainbow_csv'
 
   " All of your Plugins must be added before the following line
   call vundle#end()
