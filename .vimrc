@@ -190,14 +190,18 @@ set nocompatible
 
   " Directory options
     " Create protected user swap directory
-    call system('umask 027; mkdir ~/.vim/swap')
+    if !isdirectory($HOME."/.vim/swap")
+      call mkdir($HOME."/.vim/swap", "p", 0750)
+    endif
 
     " Set the backupdir
     set directory=~/.vim/swap/
 
   " Backup options
     " Create protected user backup directory
-    call system('umask 027; mkdir ~/.vim/backup')
+    if !isdirectory($HOME."/.vim/backup")
+      call mkdir($HOME."/.vim/backup", "p", 0750)
+    endif
 
     " Set the backupdir
     set backupdir=~/.vim/backup/
@@ -207,7 +211,9 @@ set nocompatible
 
   " Undo options
     " Create protected user undo directory
-    call system('umask 027; mkdir ~/.vim/undo')
+    if !isdirectory($HOME."/.vim/undo")
+      call mkdir($HOME."/.vim/undo", "p", 0750)
+    endif
 
     " Set the undodir
     set undodir=~/.vim/undo
