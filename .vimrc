@@ -54,6 +54,13 @@ set nocompatible
     Plugin 'pearofducks/ansible-vim'
     Plugin 'hashivim/vim-terraform'
     Plugin 'mechatroner/rainbow_csv'
+    
+    " Source Local Vundle Plugins
+    " -------------------------------------------------------------------------------------
+      " Source the ~/.vundle_local file if it exists
+      if filereadable(glob('~/.vundle_local'))
+        source ~/.vundle_local
+      endif
 
   " All of your Plugins must be added before the following line
   call vundle#end()
