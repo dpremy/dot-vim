@@ -49,10 +49,10 @@ set nocompatible
     silent! Plugin 'altercation/vim-colors-solarized'
 
     " file syntax
-    Plugin 'PProvost/vim-ps1'
-    Plugin 'pearofducks/ansible-vim'
-    Plugin 'hashivim/vim-terraform'
-    Plugin 'mechatroner/rainbow_csv'
+    silent! Plugin 'PProvost/vim-ps1'
+    silent! Plugin 'pearofducks/ansible-vim'
+    silent! Plugin 'hashivim/vim-terraform'
+    silent! Plugin 'mechatroner/rainbow_csv'
 
     " Source Local Vundle Plugins
     " -------------------------------------------------------------------------------------
