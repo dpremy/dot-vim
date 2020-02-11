@@ -38,6 +38,7 @@ set nocompatible
   " plugins
     " vim configuration
     silent! Plugin 'vim-airline/vim-airline'
+    silent! Plugin 'vim-airline/vim-airline-themes'
     silent! Plugin 'tpope/vim-fugitive'
     silent! Plugin 'tpope/vim-sensible'
     silent! Plugin 'godlygeek/tabular'
@@ -92,9 +93,10 @@ set nocompatible
   let g:syntastic_style_warning_symbol = '∆'
 
   let g:airline_powerline_fonts = 1
+  let g:airline_theme='solarized'
 
   let g:ansible_unindent_after_newline = 1
-  
+
   " Detect if we are in vi, or if airline isn't installed, so we can enable the showmode only when required. Disable showmode when in vim and airline is available.
   if !has("compatible") && !isdirectory($HOME."/.vim/bundle/vim-airline")
     set showmode
