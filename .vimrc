@@ -126,9 +126,6 @@ set nocompatible
   " Show incomplete cmds in status
   set showcmd
 
-  " Show current mode in status
-  set showmode
-
   " Enable modeline checking of files and look for modelines in the first 5 lines
   set modeline
   set modelines=5
@@ -192,8 +189,12 @@ set nocompatible
     set sidescroll=1
 
   " Enable mouse support
-  set mouse=a
+  set mouse+=a
   set ttymouse=xterm2
+  
+  " Enable faster redraw in tty
+  set ttyfast
+
 
   " Directory options
     " Create protected user swap directory
@@ -236,6 +237,10 @@ set nocompatible
 
 " Custom Key Mappings
 " -------------------------------------------------------------------------------------
+
+  " Disable 'Q' in normal mode. I don't use Ex mode.
+  nmap Q <Nop>
+
   " Indent lines without losing the current selection
   xnoremap <  <gv
   xnoremap >  >gv
