@@ -33,28 +33,27 @@ set nocompatible
   "  call vundle#begin('~/some/path/here')
 
   " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
+  silent! Plugin 'VundleVim/Vundle.vim'
 
   " plugins
     " vim configuration
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'tpope/vim-sensible'
-    Plugin 'godlygeek/tabular'
-    Plugin 'ntpeters/vim-better-whitespace'
-    Plugin 'Raimondi/delimitMate'
-    Plugin 'guns/xterm-color-table.vim'
-    Plugin 'google/vim-searchindex.git'
-    Plugin 'vim-syntastic/syntastic'
-    Plugin 'altercation/vim-colors-solarized'
+    silent! Plugin 'vim-airline/vim-airline'
+    silent! Plugin 'tpope/vim-fugitive'
+    silent! Plugin 'tpope/vim-sensible'
+    silent! Plugin 'godlygeek/tabular'
+    silent! Plugin 'ntpeters/vim-better-whitespace'
+    silent! Plugin 'Raimondi/delimitMate'
+    silent! Plugin 'guns/xterm-color-table.vim'
+    silent! Plugin 'google/vim-searchindex.git'
+    silent! Plugin 'vim-syntastic/syntastic'
+    silent! Plugin 'altercation/vim-colors-solarized'
 
     " file syntax
     Plugin 'PProvost/vim-ps1'
     Plugin 'pearofducks/ansible-vim'
     Plugin 'hashivim/vim-terraform'
     Plugin 'mechatroner/rainbow_csv'
-    
+
     " Source Local Vundle Plugins
     " -------------------------------------------------------------------------------------
       " Source the ~/.vundle_local file if it exists
@@ -92,9 +91,16 @@ set nocompatible
   let g:syntastic_style_error_symbol = '∆'
   let g:syntastic_style_warning_symbol = '∆'
 
-  let g:airline_theme='minimalist'
+  let g:airline_powerline_fonts = 1
 
   let g:ansible_unindent_after_newline = 1
+  
+  " Detect if we are in vi, or if airline isn't installed, so we can enable the showmode only when required. Disable showmode when in vim and airline is available.
+  if !has("compatible") && !isdirectory($HOME."/.vim/bundle/vim-airline")
+    set showmode
+  else
+    set noshowmode
+  endif
 
 " Built-in Plugin Options
 " -------------------------------------------------------------------------------------
@@ -143,9 +149,9 @@ set nocompatible
   set splitright
 
   " Don't fold by default, fold based on indent, and no deeper than 3 levels
-  set nofoldenable
-  set foldmethod=indent
-  set foldnestmax=3
+  silent! set nofoldenable
+  silent! set foldmethod=indent
+  silent! set foldnestmax=3
 
   " Disable line wrapping
   set nowrap
@@ -189,12 +195,11 @@ set nocompatible
     set sidescroll=1
 
   " Enable mouse support
-  set mouse+=a
+  silent! set mouse+=a
   set ttymouse=xterm2
-  
+
   " Enable faster redraw in tty
   set ttyfast
-
 
   " Directory options
     " Create protected user swap directory
