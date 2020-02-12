@@ -115,10 +115,6 @@ set nocompatible
   " Turn on syntax highlighting
   syntax on
 
-  " Turn on line numbers
-  set number
-  " Turn on realtive numbering for easier movement
-  set relativenumber
   " Turn on cursor line highlighting
   set cursorline
 
@@ -167,6 +163,11 @@ set nocompatible
   " Enable tab-completion for all file related tasks, enables searching of files in subfolders
   set path=.,**
 
+  " Line number options
+    " Configure hybrid line numbers. Shows current cursor line number and relative numbers above and below current line for fast motion.
+    set number
+    set relativenumber
+    
   " Wildmode options
     " make cmdline tab completion similar to bash
     set wildmode=list:longest,full
@@ -298,13 +299,13 @@ set nocompatible
   " https://sunaku.github.io/vim-256color-bce.html
 
   " set vim comment color to dark green, not the default blue, for all colorschemes
-  au ColorScheme * highlight Comment ctermfg=darkgreen guifg=#719e07
+  autocmd ColorScheme * highlight Comment ctermfg=darkgreen guifg=#719e07
 
   " set the line numbers to use the same bg color as vim itself, for all colorschemes
-  au ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
+  autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
 
   " set the cursor line numbers to use the a grayfg, for all colorschemes
-  au ColorScheme * highlight CursorLineNr ctermfg=12 guifg=gray
+  autocmd ColorScheme * highlight CursorLineNr ctermfg=12 guifg=gray
 
   " load the desert colorscheme, and then silently attempt to load solarized if installed
   colorscheme desert
@@ -317,7 +318,7 @@ set nocompatible
     set spelllang=en_us
 
     " toggle spelling with F7
-    map <F7> :setlocal spell!<CR>
+    map <silent> <F7> :setlocal spell!<CR>
 
     " select best match with z= and limit to top 10 suggestions
     set spellsuggest=best,10
@@ -343,7 +344,7 @@ set nocompatible
   " file is large from 10mb
   let g:LargeFile = 1024 * 1024 * 10
   augroup LargeFile
-    au!
+    autocmd!
     autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
   augroup END
 
