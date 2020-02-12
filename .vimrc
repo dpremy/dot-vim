@@ -115,8 +115,11 @@ set nocompatible
   " Turn on syntax highlighting
   syntax on
 
-  " Turn on line numbers and cursor line highlighting
+  " Turn on line numbers
   set number
+  " Turn on realtive numbering for easier movement
+  set relativenumber
+  " Turn on cursor line highlighting
   set cursorline
 
   " Hide buffers when not displayed
@@ -268,11 +271,11 @@ set nocompatible
 
   " Use ml to add current config as modeline to the top of file
   function! PrependModeline()
-    let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :", &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+    let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set %swrap %sspell %sro:", &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &wrap ? '' : 'no', &spell ? '' : 'no', &readonly ? '' : 'no')
     let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
     call append(line("^"), l:modeline)
   endfunction
-  map ml :call PrependModeline()<CR>
+  map <silent> ml :call PrependModeline()<CR>
 
 " Search Options
 " -------------------------------------------------------------------------------------
