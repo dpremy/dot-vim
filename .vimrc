@@ -160,6 +160,9 @@ set nocompatible
   " Wrap lines at convenient points
   set linebreak
 
+  " Prevent two spaces after .?! when joining lines
+  set nojoinspaces
+
   " Enable tab-completion for all file related tasks, enables searching of files in subfolders
   set path=.,**
 
@@ -167,7 +170,26 @@ set nocompatible
     " Configure hybrid line numbers. Shows current cursor line number and relative numbers above and below current line for fast motion.
     set number
     set relativenumber
-    
+
+    " Toggle between hybrid line numbers when in Normal mode, and simple line numbers when in Insert mode
+    augroup numbertoggle
+      autocmd!
+      autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber   | endif
+      autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &number | set norelativenumber | endif
+    augroup END
+
+    " Create function to toggle number and relativenumber
+    function! NumberToggle()
+      if(&number == 1)
+        set nonumber norelativenumber
+      else
+        set number relativenumber
+      endif
+    endfunc
+
+    " Toggle line numbers with Ctrl+l
+    nnoremap <silent> <C-l> :call NumberToggle()<cr>
+
   " Wildmode options
     " make cmdline tab completion similar to bash
     set wildmode=list:longest,full
