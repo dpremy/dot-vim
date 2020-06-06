@@ -1,3 +1,4 @@
+"
 " Disable vi compatibility mode as plugins and other
 "  features in this configuration require the iMproved featureset
 set nocompatible
@@ -137,9 +138,15 @@ set nocompatible
   set modeline
   set modelines=5
 
+  " Disable sounds on most errors
+  set noerrorbells
+  set novisualbell
+  set belloff+=esc,backspace,cursor,insertmode,error
+
   " Tab options
   set tabstop=2
   set shiftwidth=2
+  set shiftround
   set softtabstop=2
   set expandtab
   set autoindent smartindent
@@ -165,6 +172,9 @@ set nocompatible
 
   " Enable tab-completion for all file related tasks, enables searching of files in subfolders
   set path=.,**
+
+  " Toggle paste mode on and off
+  map <silent> pp :setlocal paste!<cr>
 
   " Line number options
     " Configure hybrid line numbers. Shows current cursor line number and relative numbers above and below current line for fast motion.
@@ -278,6 +288,10 @@ set nocompatible
   xnoremap <  <gv
   xnoremap >  >gv
 
+  " Open folds and center text when searching
+  nnoremap n nzvzz
+  nnoremap N Nzvzz
+
   " List buffers and then populate the buffer prompt
   nnoremap gb :ls<CR>:b<Space>
 
@@ -294,7 +308,7 @@ set nocompatible
 
   " Use ml to add current config as modeline to the top of file
   function! PrependModeline()
-    let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set %swrap %sspell %sro:", &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &wrap ? '' : 'no', &spell ? '' : 'no', &readonly ? '' : 'no')
+    let l:modeline = printf(" vim: set syn=%s ts=%d sw=%d tw=%d %set %swrap %sspell %sro:", &syntax, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &wrap ? '' : 'no', &spell ? '' : 'no', &readonly ? '' : 'no')
     let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
     call append(line("^"), l:modeline)
   endfunction
