@@ -18,6 +18,8 @@ set nocompatible
   " Set utf-8 Encoding
   scriptencoding utf-8
 
+" Git detection for vundle plugins
+" -------------------------------------------------------------------------------------
   " Update $PATH on Windows if git can be found, allowing for vundle plugins to be installed
     if has('win32') || has ('win64')
 
