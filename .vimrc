@@ -18,6 +18,24 @@ set nocompatible
   " Set utf-8 Encoding
   scriptencoding utf-8
 
+  " Update $PATH on Windows if git can be found, allowing for vundle plugins to be installed
+    if has('win32') || has ('win64')
+
+      " standard git install directories
+      let gitdir='C:\Program Files (x86)\Git\bin'
+      let gitdiralt1='C:\Program Files\Git\bin'
+      " portable git directory
+      let gitdiralt2=$USERPROFILE.'\OneDrive\Applications\_utils\PortableGit\bin'
+
+      if isdirectory(gitdir)
+          let $PATH.=';' .gitdir
+      elseif isdirectory(gitdiralt1)
+          let $PATH.=';' . gitdiralt1
+      elseif isdirectory(gitdiralt2)
+          let $PATH.=';' . gitdiralt2
+      endif
+    endif
+
 " Vundle Installation
 " -------------------------------------------------------------------------------------
   " To manually install Vundle use:
@@ -29,7 +47,7 @@ set nocompatible
 
   " set the runtime path to include Vundle and initialize
   set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+  silent! call vundle#begin()
   " alternatively, pass a path where Vundle should install plugins
   "  call vundle#begin('~/some/path/here')
 
@@ -64,7 +82,7 @@ set nocompatible
       endif
 
   " All of your Plugins must be added before the following line
-  call vundle#end()
+  silent! call vundle#end()
 
   " enable filetype detection for files, plugins, and indentation
   filetype plugin indent on
