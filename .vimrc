@@ -27,7 +27,7 @@ set nocompatible
       let gitdir='C:\Program Files (x86)\Git\bin'
       let gitdiralt1='C:\Program Files\Git\bin'
       " portable git directory
-      let gitdiralt2=$USERPROFILE.'\OneDrive\Applications\_utils\PortableGit\bin'
+      let gitdiralt2=$VIM.'\..\PortableGit\bin'
 
       if isdirectory(gitdir)
           let $PATH.=';' .gitdir
@@ -75,6 +75,7 @@ set nocompatible
     silent! Plugin 'pearofducks/ansible-vim'
     silent! Plugin 'hashivim/vim-terraform'
     silent! Plugin 'mechatroner/rainbow_csv'
+    silent! Plugin 'chr4/nginx.vim'
 
     " Source Local Vundle Plugins
     " -------------------------------------------------------------------------------------
