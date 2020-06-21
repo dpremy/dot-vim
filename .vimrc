@@ -169,9 +169,9 @@ set nocompatible
   set modelines=5
 
   " Disable sounds on most errors
-  set noerrorbells
-  set novisualbell
-  set belloff+=esc,backspace,cursor,insertmode,error
+  silent! set noerrorbells
+  silent! set novisualbell
+  silent! set belloff+=esc,backspace,cursor,insertmode,error
 
   " Tab options
   set tabstop=2
