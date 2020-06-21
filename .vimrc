@@ -18,6 +18,9 @@ set nocompatible
   " Set utf-8 Encoding
   scriptencoding utf-8
 
+  " Set a custome mapleader
+  let mapleader=" "
+
 " Git detection for vundle plugins
 " -------------------------------------------------------------------------------------
   " Update $PATH on Windows if git can be found, allowing for vundle plugins to be installed
@@ -69,13 +72,12 @@ set nocompatible
     silent! Plugin 'google/vim-searchindex.git'
     silent! Plugin 'vim-syntastic/syntastic'
     silent! Plugin 'altercation/vim-colors-solarized'
+    silent! Plugin 'Yggdroot/indentLine'
+    silent! Plugin 'preservim/nerdcommenter'
 
     " file syntax
-    silent! Plugin 'PProvost/vim-ps1'
-    silent! Plugin 'pearofducks/ansible-vim'
-    silent! Plugin 'hashivim/vim-terraform'
-    silent! Plugin 'mechatroner/rainbow_csv'
-    silent! Plugin 'chr4/nginx.vim'
+    silent! Plugin 'sheerun/vim-polyglot'
+    "silent! Plugin 'mechatroner/rainbow_csv'
 
     " Source Local Vundle Plugins
     " -------------------------------------------------------------------------------------
@@ -117,6 +119,13 @@ set nocompatible
   let g:airline_powerline_fonts = 1
   let g:airline_theme='solarized'
 
+  let g:indentLine_bgcolor_term = 'none'
+  let g:indentLine_fileTypeExclude = ['help']
+
+  let g:NERDSpaceDelims = 1
+  let g:NERDDefaultAlign = 'left'
+
+  " polyglot language pack options
   let g:ansible_unindent_after_newline = 1
 
   " Detect if we are in vi, or if airline isn't installed, so we can enable the showmode only when required. Disable showmode when in vim and airline is available.
@@ -195,7 +204,7 @@ set nocompatible
   set path=.,**
 
   " Toggle paste mode on and off
-  map <silent> pp :setlocal paste!<cr>
+  map <silent> <leader>pp :setlocal paste!<cr>
 
   " Line number options
     " Configure hybrid line numbers. Shows current cursor line number and relative numbers above and below current line for fast motion.
@@ -327,13 +336,16 @@ set nocompatible
   " Use Ctrl+c to close window
   map <C-c>   <C-W>c
 
-  " Use ml to add current config as modeline to the top of file
+  " Use <leader>ml to add current config as modeline to the top of file
   function! PrependModeline()
     let l:modeline = printf(" vim: set syn=%s ts=%d sw=%d tw=%d %set %swrap %sspell %sro:", &syntax, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &wrap ? '' : 'no', &spell ? '' : 'no', &readonly ? '' : 'no')
     let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
     call append(line("^"), l:modeline)
   endfunction
-  map <silent> ml :call PrependModeline()<CR>
+  map <silent> <leader>ml :call PrependModeline()<CR>
+
+  " Use <leader>nh to turn off search highlighting
+  map <leader>nh :nohlsearch<CR>
 
 " Search Options
 " -------------------------------------------------------------------------------------
