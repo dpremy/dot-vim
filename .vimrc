@@ -322,6 +322,9 @@ set nocompatible
   nnoremap n nzvzz
   nnoremap N Nzvzz
 
+  " Make 'Y' behave like the other capitals
+  nnoremap Y y$
+
   " List buffers and then populate the buffer prompt
   nnoremap gb :ls<CR>:b<Space>
 
@@ -335,6 +338,9 @@ set nocompatible
 
   " Use Ctrl+c to close window
   map <C-c>   <C-W>c
+
+  " open highlighted file, even if it doesn't exist
+  map gf :edit <cfile><cr>
 
   " Use <leader>ml to add current config as modeline to the top of file
   function! PrependModeline()
