@@ -353,6 +353,14 @@ set nocompatible
   " Use <leader>nh to turn off search highlighting
   map <leader>nh :nohlsearch<CR>
 
+  " Simplify help navigation
+  autocmd FileType help nnoremap <buffer> <CR> <C-]>
+  autocmd FileType help nnoremap <buffer> <BS> <C-T>
+  autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
+  autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
+  autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
+  autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
+
 " Search Options
 " -------------------------------------------------------------------------------------
   " Find the next search match as it is typed
