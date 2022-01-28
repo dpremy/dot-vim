@@ -335,16 +335,36 @@ set nocompatible
   " List buffers and then populate the buffer prompt
   nnoremap gb :ls<CR>:b<Space>
 
-  " Use | and - to split windows
-  map <Bar>   <C-W>v<C-W><Right>
-  map -       <C-W>s<C-W><Down>
+  " Setup window keybindings similar to those in dpremy/dot-tmux
+    " Use | and - to split windows
+    nnoremap <leader><Bar> <C-W>v<C-W><Right>
+    nnoremap <leader>-     <C-W>s<C-W><Down>
 
-  " Use Tab and Shift-Tab to switch windows
-  map <Tab>   <C-W>w
-  map <Esc>[Z <C-W>W
+    " map motion keys only when there are multiple buffers open
+    if bufwinnr(1)
+      " Switch windows with arrow keys
+      nnoremap <leader><Up>    <C-W><Up>
+      nnoremap <leader><Down>  <C-W><Down>
+      nnoremap <leader><Left>  <C-W><Left>
+      nnoremap <leader><Right> <C-W><Right>
 
-  " Use Ctrl+c to close window
-  map <C-c>   <C-W>c
+      " Use Ctrl+d to close the active window (keeps buffers open)
+      map <C-d> <C-W>c
+    endif
+
+    " 'zoom' in to a window by making the window its max size
+    nnoremap <silent> <leader>z :call ZoomWindowToggle()<cr>
+    let g:window_is_zoomed = 0
+    function! ZoomWindowToggle()
+      if g:window_is_zoomed
+      execute "normal \<c-w>="
+      let g:window_is_zoomed = 0
+      else
+        execute ":vertical resize"
+        execute ":resize"
+        let g:window_is_zoomed = 1
+      endif
+    endfunction
 
   " CtrlP Bindings
   nnoremap <C-o> :CtrlPMRUFiles<CR>
