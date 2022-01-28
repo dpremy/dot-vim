@@ -74,6 +74,8 @@ set nocompatible
     silent! Plugin 'altercation/vim-colors-solarized'
     silent! Plugin 'Yggdroot/indentLine'
     silent! Plugin 'preservim/nerdcommenter'
+    silent! Plugin 'ctrlpvim/ctrlp.vim'
+    silent! Plugin 'tacahiroy/ctrlp-funky'
 
     " file syntax
     silent! Plugin 'sheerun/vim-polyglot'
@@ -121,6 +123,11 @@ set nocompatible
 
   let g:indentLine_bgcolor_term = 'none'
   let g:indentLine_fileTypeExclude = ['help']
+
+  let g:ctrlp_max_history = 0
+  let g:ctrlp_funky_matchtype = 'path'
+  let g:ctrlp_mruf_exclude = '.*/tmp/.*\|.*/temp/.*\|.*/.git/.*'
+  let g:ctrlp_extensions = ['funky']
 
   let g:NERDSpaceDelims = 1
   let g:NERDDefaultAlign = 'left'
@@ -338,6 +345,11 @@ set nocompatible
 
   " Use Ctrl+c to close window
   map <C-c>   <C-W>c
+
+  " CtrlP Bindings
+  nnoremap <C-o> :CtrlPMRUFiles<CR>
+  nnoremap <C-b> :CtrlPBuffer<CR>
+  nnoremap <C-f> :CtrlPFunky<CR>
 
   " open highlighted file, even if it doesn't exist
   map gf :edit <cfile><cr>
