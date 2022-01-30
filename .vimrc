@@ -196,7 +196,7 @@ set nocompatible
   " Don't fold by default, fold based on indent, and no deeper than 3 levels
   silent! set nofoldenable
   silent! set foldmethod=indent
-  silent! set foldnestmax=3
+  silent! set foldnestmax=10
 
   " Disable line wrapping
   set nowrap
