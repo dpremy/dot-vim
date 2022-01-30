@@ -315,6 +315,12 @@ set nocompatible
     " Set number of lines to save for undo
     set undoreload=10000
 
+  " Configure vimdiff 
+  if &diff
+    set diffopt=internal,filler,vertical,context:3
+    highlight! link DiffText MatchParen
+  endif
+
 " Custom Key Mappings
 " -------------------------------------------------------------------------------------
 
