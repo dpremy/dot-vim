@@ -18,7 +18,7 @@ set nocompatible
   " Set utf-8 Encoding
   scriptencoding utf-8
 
-  " Set a custome mapleader
+  " Set a custom mapleader
   let mapleader=" "
 
 " Git detection for vundle plugins
@@ -436,7 +436,7 @@ set nocompatible
   " set the line numbers to use the same bg color as vim itself, for all colorschemes
   autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
 
-  " set the cursor line numbers to use the a grayfg, for all colorschemes
+  " set the cursor line numbers to use grayfg, for all colorschemes
   autocmd ColorScheme * highlight CursorLineNr ctermfg=12 guifg=gray
 
   " load the desert colorscheme, and then silently attempt to load solarized if installed
@@ -497,9 +497,8 @@ set nocompatible
     autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . "MB, some options have been disabled (see .vimrc for details)."
   endfunction
 
-" Source Local vimrc Configs
 " -------------------------------------------------------------------------------------
-  " Source the ~/.vimrc_local file if it exists
-  if filereadable(glob('~/.vimrc_local'))
-    source ~/.vimrc_local
-  endif
+" Source the ~/.vimrc_local file if it exists
+if filereadable(glob('~/.vimrc_local'))
+  source ~/.vimrc_local
+endif
