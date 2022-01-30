@@ -416,6 +416,9 @@ set nocompatible
   autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
   autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
 
+  " Configure F5 for various commands
+  autocmd FileType markdown nmap <silent> <F5> :!glow -p %<CR>
+
 " Search Options
 " -------------------------------------------------------------------------------------
   " Find the next search match as it is typed
