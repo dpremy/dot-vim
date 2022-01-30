@@ -248,7 +248,7 @@ set nocompatible
     set wildmenu
 
     " Files to ignore when tab completing
-    set wildignore=*.swp,*.bak,*.tmp,*.temp,*.cache,*.dll,*~
+    set wildignore=*.swp,*.bak,*.tmp,*.temp,*.cache,*.dll,*.exe,*~
     set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
     set wildignore+=tags
 
@@ -276,34 +276,34 @@ set nocompatible
   " Enable faster redraw in tty
   set ttyfast
 
-  " Directory options
+  " Swap config
     " Create protected user swap directory
     if !isdirectory($HOME."/.vim/swap")
       call mkdir($HOME."/.vim/swap", "p", 0750)
     endif
 
-    " Set the backupdir
+    " Set the swap directory
     set directory=~/.vim/swap/
 
-  " Backup options
+  " Backup config
     " Create protected user backup directory
     if !isdirectory($HOME."/.vim/backup")
       call mkdir($HOME."/.vim/backup", "p", 0750)
     endif
 
-    " Set the backupdir
+    " Set the backup directory
     set backupdir=~/.vim/backup/
 
     " Save undo files on file close
     set backup
 
-  " Undo options
+  " Undo config
     " Create protected user undo directory
     if !isdirectory($HOME."/.vim/undo")
       call mkdir($HOME."/.vim/undo", "p", 0750)
     endif
 
-    " Set the undodir
+    " Set the undo directory
     set undodir=~/.vim/undo
 
     " Save undo files on file close
@@ -317,6 +317,9 @@ set nocompatible
 
 " Custom Key Mappings
 " -------------------------------------------------------------------------------------
+
+  " Reload ~/.vimrc
+  nnoremap <leader>R :source ~/.vimrc<CR>
 
   " Disable 'Q' in normal mode. I don't use Ex mode.
   nmap Q <Nop>
@@ -336,24 +339,37 @@ set nocompatible
   nnoremap gb :ls<CR>:b<Space>
 
   " Setup window keybindings similar to those in dpremy/dot-tmux
+    " Show keyboard shortcuts
+    nnoremap <silent> <leader>? :map<CR>
+
+    " Change to last active window
+    nnoremap <silent> <leader>l <C-W><C-P>
+
+    " Switch to horizontal windows
+    nnoremap <silent> <leader>h :windo wincmd K<CR>
+
+    " Switch to vertical windows
+    nnoremap <silent> <leader>v :windo wincmd H<CR>
+
     " Use | and - to split windows
     nnoremap <leader><Bar> <C-W>v<C-W><Right>
     nnoremap <leader>-     <C-W>s<C-W><Down>
 
-    " map motion keys only when there are multiple buffers open
-    if bufwinnr(1)
-      " Switch windows with arrow keys
-      nnoremap <leader><Up>    <C-W><Up>
-      nnoremap <leader><Down>  <C-W><Down>
-      nnoremap <leader><Left>  <C-W><Left>
-      nnoremap <leader><Right> <C-W><Right>
+    " Move current tab to the left 1
+    map <silent> <leader>< :execute ":silent! tabmove" tabpagenr()-2<CR>
+    " Move current tab to the right 1
+    map <silent> <leader>> :execute ":silent! tabmove" tabpagenr()+1<CR>
 
-      " Use Ctrl+d to close the active window (keeps buffers open)
-      map <C-d> <C-W>c
-    endif
+    " Switch windows with arrow keys
+    nnoremap <leader><Up>    <C-W><Up>
+    nnoremap <leader><Down>  <C-W><Down>
+    nnoremap <leader><Left>  <C-W><Left>
+    nnoremap <leader><Right> <C-W><Right>
+
+    " Use Ctrl+d to close the active window (keeps buffers open)
+    map <C-d> <C-W>c
 
     " 'zoom' in to a window by making the window its max size
-    nnoremap <silent> <leader>z :call ZoomWindowToggle()<cr>
     let g:window_is_zoomed = 0
     function! ZoomWindowToggle()
       if g:window_is_zoomed
@@ -365,16 +381,17 @@ set nocompatible
         let g:window_is_zoomed = 1
       endif
     endfunction
+    nnoremap <silent> <leader>z :call ZoomWindowToggle()<CR>
 
   " CtrlP Bindings
   nnoremap <C-o> :CtrlPMRUFiles<CR>
   nnoremap <C-b> :CtrlPBuffer<CR>
   nnoremap <C-f> :CtrlPFunky<CR>
 
-  " open highlighted file, even if it doesn't exist
-  map gf :edit <cfile><cr>
+  " Open highlighted file, even if it doesn't exist
+  map gf :edit <cfile><CR>
 
-  " Use <leader>ml to add current config as modeline to the top of file
+  " Add current config as modeline to the top of file
   function! PrependModeline()
     let l:modeline = printf(" vim: set syn=%s ts=%d sw=%d tw=%d %set %swrap %sspell %sro:", &syntax, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &wrap ? '' : 'no', &spell ? '' : 'no', &readonly ? '' : 'no')
     let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
@@ -382,8 +399,8 @@ set nocompatible
   endfunction
   map <silent> <leader>ml :call PrependModeline()<CR>
 
-  " Use <leader>nh to turn off search highlighting
-  map <leader>nh :nohlsearch<CR>
+  " Turn off search highlighting
+  map <silent> <leader>nh :nohlsearch<CR>
 
   " Simplify help navigation
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
