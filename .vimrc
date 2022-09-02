@@ -77,6 +77,13 @@ set nocompatible
     silent! Plugin 'ctrlpvim/ctrlp.vim'
     silent! Plugin 'tacahiroy/ctrlp-funky'
 
+    " enable v8 only plugins, otherwise use v7 alternatives
+    if v:version >= 800
+      silent! Plugin 'dmerejkowsky/vim-ale'
+    else
+      'vim-syntastic/syntastic'
+    endif
+
     " file syntax
     silent! Plugin 'sheerun/vim-polyglot'
     "silent! Plugin 'mechatroner/rainbow_csv'
@@ -120,6 +127,7 @@ set nocompatible
 
   let g:airline_powerline_fonts = 1
   let g:airline_theme='solarized'
+  let g:airline#extensions#ale#enabled = 1
 
   let g:indentLine_bgcolor_term = 'none'
   let g:indentLine_fileTypeExclude = ['help']
