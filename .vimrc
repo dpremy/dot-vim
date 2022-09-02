@@ -70,23 +70,21 @@ set nocompatible
     silent! Plugin 'Raimondi/delimitMate'
     silent! Plugin 'guns/xterm-color-table.vim'
     silent! Plugin 'google/vim-searchindex.git'
-    silent! Plugin 'vim-syntastic/syntastic'
     silent! Plugin 'altercation/vim-colors-solarized'
     silent! Plugin 'Yggdroot/indentLine'
     silent! Plugin 'preservim/nerdcommenter'
     silent! Plugin 'ctrlpvim/ctrlp.vim'
     silent! Plugin 'tacahiroy/ctrlp-funky'
 
-    " enable v8 only plugins, otherwise use v7 alternatives
-    if v:version >= 800
-      silent! Plugin 'dmerejkowsky/vim-ale'
-    else
-      'vim-syntastic/syntastic'
-    endif
-
     " file syntax
     silent! Plugin 'sheerun/vim-polyglot'
-    "silent! Plugin 'mechatroner/rainbow_csv'
+
+    " file linter
+    if v:version >= 800
+      silent! Plugin 'dense-analysis/ale'
+    else
+      silent! Plugin 'vim-syntastic/syntastic'
+    endif
 
     " Source Local Vundle Plugins
     " -------------------------------------------------------------------------------------
