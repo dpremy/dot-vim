@@ -517,3 +517,5 @@ set nocompatible
 if filereadable(glob('~/.vimrc_local'))
   source ~/.vimrc_local
 endif
+
+" vim: set syn=vim ts=2 sw=2 tw=0 et nowrap spell ro:
