@@ -124,8 +124,10 @@ set nocompatible
   let g:syntastic_style_warning_symbol = '∆'
 
   let g:ale_fixers = {
-  \  '*': ['remove_trailing_lines']
+  \  '*': ['remove_trailing_lines'],
+  \  'sh': ['shfmt']
   \}
+  let g:ale_sh_shfmt_options = '-sr -kp -ns -s -i 2 -ci -p'
 
   " Set ALE SignColumn ctermbg to None to match colorscheme, fixes bg in WSL and vim.exe
   autocmd ColorScheme * highlight SignColumn ctermbg=None  guibg=NONE
