@@ -127,8 +127,10 @@ set nocompatible
   \  '*': ['remove_trailing_lines']
   \}
 
-  " Set ALE SignColumn ctermbg to None to match colorscheme
+  " Set ALE SignColumn ctermbg to None to match colorscheme, fixes bg in WSL
   autocmd ColorScheme * highlight SignColumn ctermbg=None
+
+  let g:solarized_termtrans = 1
 
   let g:airline_powerline_fonts = 1
   let g:airline_theme='solarized'
