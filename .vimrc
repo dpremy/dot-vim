@@ -127,6 +127,9 @@ set nocompatible
   \  '*': ['remove_trailing_lines']
   \}
 
+  " Set ALE SignColumn ctermbg to None to match colorscheme
+  autocmd ColorScheme * highlight SignColumn ctermbg=None
+
   let g:airline_powerline_fonts = 1
   let g:airline_theme='solarized'
   let g:airline#extensions#ale#enabled = 1
