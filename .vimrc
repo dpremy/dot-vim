@@ -123,6 +123,10 @@ set nocompatible
   let g:syntastic_style_error_symbol = '∆'
   let g:syntastic_style_warning_symbol = '∆'
 
+  let g:ale_fixers = {
+  \  '*': ['remove_trailing_lines']
+  \}
+
   let g:airline_powerline_fonts = 1
   let g:airline_theme='solarized'
   let g:airline#extensions#ale#enabled = 1
