@@ -127,8 +127,8 @@ set nocompatible
   \  '*': ['remove_trailing_lines']
   \}
 
-  " Set ALE SignColumn ctermbg to None to match colorscheme, fixes bg in WSL
-  autocmd ColorScheme * highlight SignColumn ctermbg=None
+  " Set ALE SignColumn ctermbg to None to match colorscheme, fixes bg in WSL and vim.exe
+  autocmd ColorScheme * highlight SignColumn ctermbg=None  guibg=NONE
 
   let g:solarized_termtrans = 1
 
