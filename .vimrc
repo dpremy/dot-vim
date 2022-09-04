@@ -29,21 +29,28 @@ set nocompatible
       " standard git install directories
       let gitdir='C:\Program Files (x86)\Git\bin'
       let gitdiralt1='C:\Program Files\Git\bin'
-      " portable git directory
+      " portable git directory for vim and neovim
       let gitdiralt2=$VIM.'\..\PortableGit\bin'
+      let gitdiralt3=$VIM.'\..\..\..\PortableGit\bin'
 
       if isdirectory(gitdir)
-          let $PATH.=';' .gitdir
+        let $PATH.=';' .gitdir
       elseif isdirectory(gitdiralt1)
-          let $PATH.=';' . gitdiralt1
+        let $PATH.=';' . gitdiralt1
       elseif isdirectory(gitdiralt2)
-          let $PATH.=';' . gitdiralt2
+        let $PATH.=';' . gitdiralt2
+      elseif isdirectory(gitdiralt3)
+        let $PATH.=';' . gitdiralt3
       endif
 
-    " additional vim-helpers directory
-    let helpersdir=$VIM.'\..\vim-helpers'
+      " additional portable vim-helpers directory
+      let helpersdir=$VIM.'\..\vim-helpers'
+      let helpersdir1=$VIM.'\..\..\..\vim-helpers'
+      
       if isdirectory(helpersdir)
-          let $PATH.=';' .helpersdir
+        let $PATH.=';' .helpersdir
+      elseif isdirectory(helpersdir1)
+        let $PATH.=';' .helpersdir1
       endif
     endif
 
