@@ -39,6 +39,12 @@ set nocompatible
       elseif isdirectory(gitdiralt2)
           let $PATH.=';' . gitdiralt2
       endif
+
+    " additional vim-helpers directory
+    let helpersdir=$VIM.'\..\vim-helpers'
+      if isdirectory(helpersdir)
+          let $PATH.=';' .helpersdir
+      endif
     endif
 
 " Vundle Installation
@@ -293,7 +299,6 @@ set nocompatible
   endif
 
   " Enable faster redraw in tty
-
   set ttyfast
 
   " Swap config
