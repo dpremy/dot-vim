@@ -1,4 +1,3 @@
-"
 " Disable vi compatibility mode as plugins and other
 "  features in this configuration require the iMproved featureset
 set nocompatible
@@ -46,7 +45,7 @@ set nocompatible
       " additional portable vim-helpers directory
       let helpersdir=$VIM.'\..\vim-helpers'
       let helpersdir1=$VIM.'\..\..\..\vim-helpers'
-      
+
       if isdirectory(helpersdir)
         let $PATH.=';' .helpersdir
       elseif isdirectory(helpersdir1)
@@ -148,7 +147,6 @@ set nocompatible
   let g:solarized_termtrans = 1
 
   let g:airline_powerline_fonts = 1
-  let g:airline_theme='solarized'
   let g:airline#extensions#ale#enabled = 1
 
   let g:indentLine_bgcolor_term = 'none'
@@ -483,6 +481,13 @@ set nocompatible
   " load the desert colorscheme, and then silently attempt to load solarized if installed
   colorscheme desert
   silent! colorscheme solarized
+
+  " if we could load solarized set airline to match
+  if g:colors_name == 'solarized'
+    let g:airline_theme='solarized'
+  else
+    let g:airline_theme='desertink'
+  endif
 
 " Spell Options
 " -------------------------------------------------------------------------------------
