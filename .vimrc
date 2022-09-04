@@ -288,9 +288,12 @@ set nocompatible
 
   " Enable mouse support
   silent! set mouse+=a
-  set ttymouse=xterm2
+  if !has('nvim')
+    set ttymouse=xterm2
+  endif
 
   " Enable faster redraw in tty
+
   set ttyfast
 
   " Swap config
