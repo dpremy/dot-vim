@@ -299,8 +299,15 @@ set nocompatible
 
   " Enable mouse support
   silent! set mouse+=a
+
+  " neovim doesn't require ttymouse, but vim does
   if !has('nvim')
     set ttymouse=xterm2
+  endif
+
+  " Enable system clipboard support if available
+  if has('clipboard')
+    set clipboard^=unnamed,unnamedplus
   endif
 
   " Enable faster redraw in tty
