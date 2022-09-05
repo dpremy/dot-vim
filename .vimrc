@@ -6,8 +6,8 @@ set nocompatible
 " -------------------------------------------------------------------------------------
   " Properly detect fileencodings
   " Based on http://stackoverflow.com/questions/5477565/how-to-setup-vim-properly-for-editing-in-utf-8
-  if has("multi_byte")
-    if &termencoding == ""
+  if has('multi_byte')
+    if &termencoding ==# ''
       let &termencoding = &encoding
     endif
     set encoding=utf-8
@@ -18,7 +18,7 @@ set nocompatible
   scriptencoding utf-8
 
   " Set a custom mapleader
-  let mapleader=" "
+  let mapleader=' '
 
 " Git detection for vundle plugins
 " -------------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ set nocompatible
   let g:ansible_unindent_after_newline = 1
 
   " Detect if we are in vi, or if airline isn't installed, so we can enable the showmode only when required. Disable showmode when in vim and airline is available.
-  if !has("compatible") && !isdirectory($HOME."/.vim/bundle/vim-airline")
+  if !has('compatible') && !isdirectory($HOME.'/.vim/bundle/vim-airline')
     set showmode
   else
     set noshowmode
@@ -315,8 +315,8 @@ set nocompatible
 
   " Swap config
     " Create protected user swap directory
-    if !isdirectory($HOME."/.vim/swap")
-      call mkdir($HOME."/.vim/swap", "p", 0750)
+    if !isdirectory($HOME.'/.vim/swap')
+      call mkdir($HOME.'/.vim/swap', 'p', 0750)
     endif
 
     " Set the swap directory
@@ -324,8 +324,8 @@ set nocompatible
 
   " Backup config
     " Create protected user backup directory
-    if !isdirectory($HOME."/.vim/backup")
-      call mkdir($HOME."/.vim/backup", "p", 0750)
+    if !isdirectory($HOME.'/.vim/backup')
+      call mkdir($HOME.'/.vim/backup', 'p', 0750)
     endif
 
     " Set the backup directory
@@ -336,8 +336,8 @@ set nocompatible
 
   " Undo config
     " Create protected user undo directory
-    if !isdirectory($HOME."/.vim/undo")
-      call mkdir($HOME."/.vim/undo", "p", 0750)
+    if !isdirectory($HOME.'/.vim/undo')
+      call mkdir($HOME.'/.vim/undo', 'p', 0750)
     endif
 
     " Set the undo directory
@@ -419,8 +419,8 @@ set nocompatible
       execute "normal \<c-w>="
       let g:window_is_zoomed = 0
       else
-        execute ":vertical resize"
-        execute ":resize"
+        execute ':vertical resize'
+        execute ':resize'
         let g:window_is_zoomed = 1
       endif
     endfunction
@@ -436,9 +436,9 @@ set nocompatible
 
   " Add current config as modeline to the top of file
   function! PrependModeline()
-    let l:modeline = printf(" vim: set syn=%s ts=%d sw=%d tw=%d %set %swrap %sspell %sro:", &syntax, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &wrap ? '' : 'no', &spell ? '' : 'no', &readonly ? '' : 'no')
-    let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-    call append(line("^"), l:modeline)
+    let l:modeline = printf(' vim: set syn=%s ts=%d sw=%d tw=%d %set %swrap %sspell %sro:', &syntax, &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no', &wrap ? '' : 'no', &spell ? '' : 'no', &readonly ? '' : 'no')
+    let l:modeline = substitute(&commentstring, '%s', l:modeline, '')
+    call append(line('^'), l:modeline)
   endfunction
   map <silent> <leader>ml :call PrependModeline()<CR>
 
@@ -490,7 +490,7 @@ set nocompatible
   silent! colorscheme solarized
 
   " if we could load solarized set airline to match
-  if g:colors_name == 'solarized'
+  if g:colors_name ==# 'solarized'
     let g:airline_theme='solarized'
   else
     let g:airline_theme='desertink'
@@ -520,7 +520,7 @@ set nocompatible
   endif
 
   " Prevent loading of CSApprox if there is no gui support
-  if !has("gui")
+  if !has('gui')
     let g:CSApprox_loaded = 1
   endif
 
