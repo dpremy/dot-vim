@@ -454,7 +454,10 @@ set nocompatible
   autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
 
   " Configure F5 for various commands
-  autocmd FileType markdown nmap <silent> <F5> :!glow -p %<CR>
+  autocmd FileType markdown nmap <silent> <F5> :!glow %<CR>
+  autocmd FileType yaml.docker-compose nmap <silent> <F5> :!docker-compose -f '%:p' down; docker-compose -f '%:p' up -d<CR>
+  autocmd FileType sh nmap <silent> <F5> :!sh '%:p'<CR>
+  autocmd FileType dosbatch nmap <silent> <F5> :!"%:p"<CR>
 
 " Search Options
 " -------------------------------------------------------------------------------------
