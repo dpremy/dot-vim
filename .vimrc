@@ -141,9 +141,6 @@ set nocompatible
   \}
   let g:ale_sh_shfmt_options = '-sr -kp -ns -s -i 2 -ci -p'
 
-  " Set ALE SignColumn ctermbg to None to match colorscheme, fixes bg in WSL and vim.exe
-  autocmd ColorScheme * highlight SignColumn ctermbg=None  guibg=NONE
-
   let g:solarized_termtrans = 1
 
   let g:airline_powerline_fonts = 1
@@ -352,7 +349,7 @@ set nocompatible
     " Set number of lines to save for undo
     set undoreload=10000
 
-  " Configure vimdiff 
+  " Configure vimdiff
   if &diff
     set diffopt=internal,filler,vertical,context:3
     highlight! link DiffText MatchParen
@@ -446,18 +443,24 @@ set nocompatible
   map <silent> <leader>nh :nohlsearch<CR>
 
   " Simplify help navigation
-  autocmd FileType help nnoremap <buffer> <CR> <C-]>
-  autocmd FileType help nnoremap <buffer> <BS> <C-T>
-  autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
-  autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
-  autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
-  autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
+  augroup navhelp
+    autocmd!
+    autocmd FileType help nnoremap <buffer> <CR> <C-]>
+    autocmd FileType help nnoremap <buffer> <BS> <C-T>
+    autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
+    autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
+    autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
+    autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
+  augroup END
 
   " Configure F5 for various commands
-  autocmd FileType markdown nmap <silent> <F5> :!glow %<CR>
-  autocmd FileType yaml.docker-compose nmap <silent> <F5> :!docker-compose -f '%:p' down; docker-compose -f '%:p' up -d<CR>
-  autocmd FileType sh nmap <silent> <F5> :!sh '%:p'<CR>
-  autocmd FileType dosbatch nmap <silent> <F5> :!"%:p"<CR>
+  augroup f5binding
+    autocmd!
+    autocmd FileType markdown nmap <silent> <F5> :!glow %<CR>
+    autocmd FileType yaml.docker-compose nmap <silent> <F5> :!docker-compose -f '%:p' down; docker-compose -f '%:p' up -d<CR>
+    autocmd FileType sh nmap <silent> <F5> :!sh '%:p'<CR>
+    autocmd FileType dosbatch nmap <silent> <F5> :!"%:p"<CR>
+  augroup END
 
 " Search Options
 " -------------------------------------------------------------------------------------
@@ -479,14 +482,21 @@ set nocompatible
   " never set t_Co directly, let vim pick up color support from the terminal as designed
   " https://sunaku.github.io/vim-256color-bce.html
 
-  " set vim comment color to dark green, not the default blue, for all colorschemes
-  autocmd ColorScheme * highlight Comment ctermfg=darkgreen guifg=#719e07
+  " override ColorSchemes highlighting
+  augroup overridecolorscheme
+    autocmd!
+    " set vim comment color to dark green, not the default blue, for all colorschemes
+    autocmd ColorScheme * highlight Comment ctermfg=darkgreen guifg=#719e07
 
-  " set the line numbers to use the same bg color as vim itself, for all colorschemes
-  autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
+    " set the line numbers to use the same bg color as vim itself, for all colorschemes
+    autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
 
-  " set the cursor line numbers to use grayfg, for all colorschemes
-  autocmd ColorScheme * highlight CursorLineNr ctermfg=12 guifg=gray
+    " set the cursor line numbers to use grayfg, for all colorschemes
+    autocmd ColorScheme * highlight CursorLineNr ctermfg=12 guifg=gray
+
+    " set the ALE SignColumn ctermbg to None to match colorscheme, fixes bg in WSL and vim.exe
+    autocmd ColorScheme * highlight SignColumn ctermbg=None  guibg=NONE
+  augroup END
 
   " load the desert colorscheme, and then silently attempt to load solarized if installed
   colorscheme desert
@@ -518,8 +528,11 @@ set nocompatible
     highlight SpellRare ctermfg=red ctermbg=NONE
 
     " enable spelling by default on specified file type
-    autocmd BufRead,BufNewFile *.txt setlocal spell
-    autocmd BufRead,BufNewFile *.md setlocal spell
+    augroup enablespell
+      autocmd!
+      autocmd BufRead,BufNewFile *.txt setlocal spell
+      autocmd BufRead,BufNewFile *.md setlocal spell
+    augroup END
   endif
 
   " Prevent loading of CSApprox if there is no gui support
@@ -529,7 +542,7 @@ set nocompatible
 
 " Large File Options
 " -------------------------------------------------------------------------------------
-  " file is large from 10mb
+  " check for files larger than 10mb
   let g:LargeFile = 1024 * 1024 * 10
   augroup LargeFile
     autocmd!
@@ -537,20 +550,20 @@ set nocompatible
   augroup END
 
   function! LargeFile()
-    " no syntax highlighting etc
+    " disable syntax highlighting etc
     set eventignore+=FileType
-    " no line numbers
+    " disable line numbers
     set nonumber
-    " no spell checking
+    " disable spellcheck
     set nospell
-    " save memory when other file is viewed
+    " save memory by unloading buffer when hidden
     setlocal bufhidden=unload
     " is read-only (write with :w new_filename)
     setlocal buftype=nowrite
-    " no undo possible
+    " disable undo
     setlocal undolevels=-1
-    " display message
-    autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . "MB, some options have been disabled (see .vimrc for details)."
+    " register autocmd to LargeFile augroup to display message that options have been disabled
+    autocmd LargeFile VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . "MB, some options have been disabled (see .vimrc for details)."
   endfunction
 
 " -------------------------------------------------------------------------------------
