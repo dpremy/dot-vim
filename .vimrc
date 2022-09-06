@@ -498,11 +498,17 @@ set nocompatible
     autocmd ColorScheme * highlight SignColumn ctermbg=None  guibg=NONE
   augroup END
 
-  " load the desert colorscheme, and then silently attempt to load solarized if installed
+  " load the desert colorscheme
   colorscheme desert
-  silent! colorscheme solarized
 
-  " if we could load solarized set airline to match
+  " silently attempt to load solarized, if installed
+  " current solarized theme doesn't work with neovim
+  " still working to find a solarized config which works for vim and neovim
+  if !has('nvim')
+    silent! colorscheme solarized
+  endif
+
+  " set airline to match colorscheme
   if g:colors_name ==# 'solarized'
     let g:airline_theme='solarized'
   else
