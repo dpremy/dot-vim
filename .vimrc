@@ -88,6 +88,10 @@ set nocompatible
     silent! Plugin 'ctrlpvim/ctrlp.vim'
     silent! Plugin 'tacahiroy/ctrlp-funky'
 
+    " if vim-nix starts having syntax highlighting issues
+    " see https://nicknovitski.com/vim-nix-syntax
+    silent! Plugin 'LnL7/vim-nix'
+
     " file syntax
     silent! Plugin 'sheerun/vim-polyglot'
 
