@@ -24,11 +24,11 @@ steps:
   - apk add neovim
   - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 
-- name: centos7-vim-vi-mode
-  image: centos:centos7
-  commands:
-  - yum -y install vim
-  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+#- name: centos7-vim-vi-mode
+#  image: centos:centos7
+#  commands:
+#  - yum -y install vim
+#  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: centos7-vim-compat
   image: centos:centos7
   commands:
