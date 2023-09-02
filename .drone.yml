@@ -1,0 +1,57 @@
+---
+kind: pipeline
+type: docker
+name: vimrc
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: alpine-vi
+  image: alpine:latest
+  commands:
+  - apk add vi
+  - vi -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+- name: alpine-vim
+  image: alpine:latest
+  commands:
+  - apk add vim
+  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+- name: alpine-neovim
+  image: alpine:latest
+  commands:
+  - apk add neovim
+  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+
+- name: centos7-vi
+  image: centos:centos7
+  commands:
+  - yum -y install vi
+  - vi -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+- name: centos7-vim
+  image: centos:centos7
+  commands:
+  - yum -y install vim
+  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+- name: centos7-neovim
+  image: centos:centos7
+  commands:
+  - yum -y install neovim
+  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+
+- name: centos8-vi
+  image: centos:centos8
+  commands:
+  - yum -y install vi
+  - vi -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+- name: centos8-vim
+  image: centos:centos8
+  commands:
+  - yum -y install vim
+  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+- name: centos8-neovim
+  image: centos:centos8
+  commands:
+  - yum -y install neovim
+  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
