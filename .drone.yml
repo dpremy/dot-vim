@@ -45,11 +45,11 @@ steps:
 #  commands:
 #  - yum -y install vim
 #  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
-- name: oraclelinux8-vim-compat
-  image: oraclelinux:8
-  commands:
-  - dnf -y install vim
-  - vi -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+#- name: oraclelinux8-vim-compat
+#  image: oraclelinux:8
+#  commands:
+#  - dnf -y install vim
+#  - vi -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: oraclelinux8-vim
   image: oraclelinux:8
   commands:
