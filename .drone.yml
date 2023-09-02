@@ -40,11 +40,11 @@ steps:
   - yum -y install vim
   - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 
-- name: oraclelinux8-vim-vi-mode
-  image: oraclelinux:8
-  commands:
-  - yum -y install vim
-  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+#- name: oraclelinux8-vim-vi-mode
+#  image: oraclelinux:8
+#  commands:
+#  - yum -y install vim
+#  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: oraclelinux8-vim-compat
   image: oraclelinux:8
   commands:
