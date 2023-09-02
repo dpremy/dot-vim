@@ -8,6 +8,11 @@ platform:
   arch: amd64
 
 steps:
+- name: shellcheck
+  image: koalaman/shellcheck-alpine:stable
+  commands:
+  - shellcheck --shell ksh -S warning .ksh/*
+  - shellcheck --shell bash -S warning .bash/*
 - name: alpine-vim-vi-mode
   image: alpine:latest
   commands:
