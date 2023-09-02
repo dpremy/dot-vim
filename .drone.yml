@@ -1,18 +1,22 @@
 ---
 kind: pipeline
 type: docker
-name: vimrc
+name: dot-vim
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: shellcheck
+- name: shellcheck-ksh
   image: koalaman/shellcheck-alpine:stable
   commands:
   - shellcheck --shell ksh -S warning .ksh/*
+- name: shellcheck-bash
+  image: koalaman/shellcheck-alpine:stable
+  commands:
   - shellcheck --shell bash -S warning .bash/*
+
 - name: alpine-vim-vi-mode
   image: alpine:latest
   commands:
