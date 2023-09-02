@@ -11,8 +11,8 @@ steps:
 - name: alpine-vi
   image: alpine:latest
   commands:
-  - apk add vi
-  - vi -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - apk add vim
+  - vim -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
 - name: alpine-vim
   image: alpine:latest
   commands:
@@ -27,8 +27,8 @@ steps:
 - name: centos7-vi
   image: centos:centos7
   commands:
-  - yum -y install vi
-  - vi -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - yum -y install vim
+  - vim -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
 - name: centos7-vim
   image: centos:centos7
   commands:
@@ -43,8 +43,8 @@ steps:
 - name: centos8-vi
   image: centos:centos8
   commands:
-  - yum -y install vi
-  - vi -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - yum -y install vim
+  - vi -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
 - name: centos8-vim
   image: centos:centos8
   commands:
