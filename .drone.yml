@@ -41,22 +41,22 @@ steps:
   - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 
 - name: oraclelinux8-vim-vi-mode
-  image: OracleLinux:8
+  image: oraclelinux:8
   commands:
   - yum -y install vim
   - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: oraclelinux8-vim-compat
-  image: OracleLinux:8
+  image: oraclelinux:8
   commands:
   - dnf -y install vim
   - vi -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: oraclelinux8-vim
-  image: OracleLinux:8
+  image: oraclelinux:8
   commands:
   - dnf -y install vim
   - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: oraclelinux8-neovim
-  image: OracleLinux:8
+  image: oraclelinux:8
   commands:
   - dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
   - dnf install -y neovim
