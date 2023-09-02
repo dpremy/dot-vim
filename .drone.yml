@@ -8,50 +8,64 @@ platform:
   arch: amd64
 
 steps:
-- name: alpine-vi
+- name: alpine-vim-compat
   image: alpine:latest
   commands:
   - apk add vim
-  - vim -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
-- name: alpine-vim
+  - vim -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+- name: alpine-vim-vi-mode
   image: alpine:latest
   commands:
   - apk add vim
-  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+  commands:
+  - apk add vim
+  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: alpine-neovim
   image: alpine:latest
   commands:
   - apk add neovim
-  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 
-- name: centos7-vi
+- name: centos7-vim-compat
   image: centos:centos7
   commands:
   - yum -y install vim
-  - vim -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - vim -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+- name: centos7-vim-vi-mode
+  image: centos:centos7
+  commands:
+  - yum -y install vim
+  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+- name: centos7-vim-vi-mode
+  image: centos:centos7
+  commands:
+  - yum -y install vim
+  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 - name: centos7-vim
   image: centos:centos7
   commands:
   - yum -y install vim
-  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
-- name: centos7-neovim
-  image: centos:centos7
-  commands:
-  - yum -y install neovim
-  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
 
-- name: centos8-vi
-  image: centos:centos8
+- name: oraclelinux8-vim-compat
+  image: OracleLinux:8
+  commands:
+  - dnf -y install vim
+  - vi -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+- name: oraclelinux8-vim-vi-mode
+  image: OracleLinux:8
   commands:
   - yum -y install vim
-  - vi -C -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
-- name: centos8-vim
-  image: centos:centos8
+  - ex -v -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+- name: oraclelinux8-vim
+  image: OracleLinux:8
   commands:
-  - yum -y install vim
-  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
-- name: centos8-neovim
-  image: centos:centos8
+  - dnf -y install vim
+  - vim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
+- name: oraclelinux8-neovim
+  image: OracleLinux:8
   commands:
-  - yum -y install neovim
-  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'; echo $?
+  - dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+  - dnf install -y neovim
+  - nvim -u NONE -c 'try | source .vimrc | catch | cq | endtry | q'
