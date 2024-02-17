@@ -2,19 +2,18 @@
 
 ## Purpose
 
-This repository contains the dotfile and config I use with vi, vim, and neovim. It is desinged to work with [dotfiler](https://github.com/svetlyak40wt/dotfiler), but can easily be used without it.
+This repository contains the dotfiles and configs I use with vi, vim, and neovim. It is desinged to work with [GNU stow](https://www.gnu.org/software/stow/), but can easily be used without it.
 
 ## Installation
 
 ```shell
-# if you don't already have dotfiler, clone it to your home directory
-git clone -q https://github.com/svetlyak40wt/dotfiler ~/.files
+# if you don't already have GNU stow, install stow for your OS
 
-# add this repo to dotfiler
-~/.files/bin/dot add https://gitlab.com/dpremy/dot-vim.git
+# clone this repo in to a .files directory
+git clone -q https://gitlab.com/dpremy/dot-vim.git ~/.files/dot-vim
 
-# update the symlinks in your home directory
-~/.files/bin/dot --skip-pull update
+# use stow to symlink this 'package' in to your home directory
+stow -d ~/.files/ -t ~/ -S dot-vim
 ```
 
 ## Usage

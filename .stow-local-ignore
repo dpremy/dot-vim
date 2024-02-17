@@ -1,0 +1,10 @@
+\.git
+\.gitignore
+\.gitattributes
+
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+\.drone.yml
