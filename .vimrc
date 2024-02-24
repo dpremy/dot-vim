@@ -87,6 +87,9 @@ set nocompatible
     silent! Plugin 'preservim/nerdcommenter'
     silent! Plugin 'ctrlpvim/ctrlp.vim'
     silent! Plugin 'tacahiroy/ctrlp-funky'
+    silent! Plugin 'junegunn/fzf'
+    silent! Plugin 'junegunn/fzf.vim'
+    silent! Plugin 'nanotee/zoxide.vim'
 
     " if vim-nix starts having syntax highlighting issues
     " see https://nicknovitski.com/vim-nix-syntax
