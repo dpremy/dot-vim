@@ -6,6 +6,8 @@ This repository contains the dotfiles and configs I use with vi, vim, and neovim
 
 ## Installation
 
+### Linux
+
 ```shell
 # if you don't already have GNU stow, install stow for your OS
 
@@ -15,6 +17,13 @@ git clone -q https://gitlab.com/dpremy/dot-vim.git ~/.files/dot-vim
 # use stow to symlink this 'package' in to your home directory
 stow -d ~/.files/ -t ~/ -S dot-vim
 ```
+
+### Windows
+
+- Copy `.vimrc` and `.gvimrc` to `%userprofile%`
+- Copy `.config/nvim/init.vim` and `.config/nvim/ginit.vim` to `%localappdata%\nvim\`
+- If you have git available on the system, run `git clone https://github.com/gmarik/Vundle.vim.git %userprofile%\.vim\bundle\Vundle.vim`
+- In both vim and nvim, run `:PluginInstall`
 
 ## Usage
 
