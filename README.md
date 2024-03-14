@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository contains the dotfiles and configs I use with vi, vim, and neovim. It is desinged to work with [GNU stow](https://www.gnu.org/software/stow/), but can easily be used without it.
+This repository contains the dotfiles and configs I use with vi, vim, and neovim. It is designed to work with [GNU stow](https://www.gnu.org/software/stow/), but can easily be used without it.
 
 ## Installation
 
