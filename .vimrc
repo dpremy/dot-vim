@@ -579,6 +579,20 @@ set nocompatible
     autocmd LargeFile VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . "MB, some options have been disabled (see .vimrc for details)."
   endfunction
 
+" Terminal Options
+" -------------------------------------------------------------------------------------
+  " Resolve issue with vi/vim in Windows Terminal not having the correct Insert cursor
+  " https://github.com/microsoft/terminal/issues/4335
+  " https://vim.fandom.com/wiki/Configuring_the_cursor
+  " 2 solid block
+  " 6 solid vertical bar (282 or above support)
+  if &term =~ '^xterm'
+    " normal mode
+    let &t_EI .= "\<Esc>[2 q"
+    " insert mode
+    let &t_SI .= "\<Esc>[6 q"
+  endif
+
 " -------------------------------------------------------------------------------------
 " Source the ~/.vimrc_local file if it exists
 if filereadable(glob('~/.vimrc_local'))
