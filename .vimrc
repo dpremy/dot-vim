@@ -82,7 +82,7 @@ set nocompatible
     silent! Plugin 'Raimondi/delimitMate'
     silent! Plugin 'guns/xterm-color-table.vim'
     silent! Plugin 'google/vim-searchindex.git'
-    silent! Plugin 'altercation/vim-colors-solarized'
+    silent! Plugin 'catppuccin/nvim'
     silent! Plugin 'Yggdroot/indentLine'
     silent! Plugin 'preservim/nerdcommenter'
     silent! Plugin 'ctrlpvim/ctrlp.vim'
@@ -148,10 +148,9 @@ set nocompatible
   \}
   let g:ale_sh_shfmt_options = '-sr -kp -ns -s -i 2 -ci -p'
 
-  let g:solarized_termtrans = 1
-
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#ale#enabled = 1
+  let g:airline_detect_spelllang=0
 
   let g:indentLine_bgcolor_term = 'none'
   let g:indentLine_fileTypeExclude = ['help']
@@ -489,35 +488,15 @@ set nocompatible
   " never set t_Co directly, let vim pick up color support from the terminal as designed
   " https://sunaku.github.io/vim-256color-bce.html
 
-  " override ColorSchemes highlighting
-  augroup overridecolorscheme
-    autocmd!
-    " set vim comment color to dark green, not the default blue, for all colorschemes
-    autocmd ColorScheme * highlight Comment ctermfg=darkgreen guifg=#719e07
-
-    " set the line numbers to use the same bg color as vim itself, for all colorschemes
-    autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
-
-    " set the cursor line numbers to use grayfg, for all colorschemes
-    autocmd ColorScheme * highlight CursorLineNr ctermfg=12 guifg=gray
-
-    " set the ALE SignColumn ctermbg to None to match colorscheme, fixes bg in WSL and vim.exe
-    autocmd ColorScheme * highlight SignColumn ctermbg=None  guibg=NONE
-  augroup END
-
-  " load the desert colorscheme
+  " load the desert colorscheme in case catppuccin is not installed
   colorscheme desert
 
-  " silently attempt to load solarized, if installed
-  " current solarized theme doesn't work with neovim
-  " still working to find a solarized config which works for vim and neovim
-  if !has('nvim')
-    silent! colorscheme solarized
-  endif
+  " silently attempt to load catppuccin, if installed
+  silent! colorscheme catppuccin-frappe
 
-  " set airline to match colorscheme
-  if g:colors_name ==# 'solarized'
-    let g:airline_theme='solarized'
+  " set airline to match the loaded colorscheme
+  if g:colors_name ==# 'catppuccin-frappe'
+    let g:airline_theme='catppuccin'
   else
     let g:airline_theme='desertink'
   endif
